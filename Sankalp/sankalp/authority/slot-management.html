@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slot Management – Sankalp Authority</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+<style>
+[data-theme="dark"] body{background:#0f1a13!important;color:#e8f5ee!important}
+[data-theme="dark"] .sidebar{background:#111e15!important;border-color:#2a4a32!important}
+[data-theme="dark"] .nav-item{color:#86a891!important}
+[data-theme="dark"] .nav-item:hover,[data-theme="dark"] .nav-item.active{background:#1a2e1f!important;color:#52a87a!important}
+[data-theme="dark"] .main{background:#0f1a13!important}
+[data-theme="dark"] .topbar{background:#111e15!important;border-color:#2a4a32!important}
+[data-theme="dark"] .card{background:#1a2e1f!important;border-color:#2a4a32!important}
+[data-theme="dark"] table thead tr{background:#0f1a13!important}
+[data-theme="dark"] th,td{color:#c8e6d4!important;border-color:#2a4a32!important}
+[data-theme="dark"] .stat-card{background:#1a2e1f!important;border-color:#2a4a32!important}
+[data-theme="dark"] .page-footer{background:#111e15!important;color:#6b8a73!important}
+.dm-toggle{width:32px;height:32px;border-radius:50%;background:#e8f5ee;border:1.5px solid #c8e6d4;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .2s;flex-shrink:0}
+[data-theme="dark"] .dm-toggle{background:#1a2e1f;border-color:#2a4a32}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="sidebar-logo"><a href="../index.html" class="logo-mark flex items-center" style="gap:10px;text-decoration:none"><img src="../images/logo.jpg" alt="Sankalp" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #c8e6d4;"><div class="logo-text"><strong>Sankalp</strong><span>From Farm to Fair Markets</span></div></a></div>
+  <nav class="sidebar-nav">
+    <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Dashboard</a>
+    <a href="register-farmer.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>Register Farmer</a>
+    <a href="mandal-farmers.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Mandal-wise Farmers</a>
+    <a href="slot-management.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Slot Management</a>
+    <a href="farmer-bookings.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>Farmer Bookings</a>
+    <a href="#" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Procurement Mgmt</a>
+    <a href="#" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Payment Update</a>
+    <a href="reports-analytics.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Reports &amp; Analytics</a>
+    <a href="center-management.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Center Management</a>
+    <div class="nav-divider"></div>
+    <a href="settings.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg>Settings</a>
+    <a href="help-support.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg>Help &amp; Support</a>
+    <a href="../login.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Logout</a>
+  </nav>
+  <div class="sidebar-footer"><div style="font-size:14px;font-weight:700;color:var(--green-800)">Better Farmers<br>Brighter Tomorrow</div></div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div><h1 style="font-size:20px;font-weight:800">Slot Management</h1><p style="font-size:13px;color:var(--text-light)">Manage and monitor procurement slot availability</p></div>
+    <div class="topbar-right" style="gap:10px"><button class="dm-toggle" id="dmToggle" title="Toggle Dark Mode">🌙</button>
+      <div class="user-pill"><div class="user-avatar" style="font-size:18px">👨‍💼</div><div><div class="user-name">R. Kumar</div><div class="user-role">Procurement Officer</div></div><span>▾</span></div>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <!-- Stats -->
+    <div class="stat-cards stat-cards-4" style="margin-bottom:24px">
+      <div class="stat-card"><div class="stat-icon stat-icon-green" style="font-size:22px">📅</div><div class="stat-value">24</div><div class="stat-label">Total Slots Today</div></div>
+      <div class="stat-card"><div class="stat-icon stat-icon-blue" style="font-size:22px">✅</div><div class="stat-value">18</div><div class="stat-label">Available Slots</div></div>
+      <div class="stat-card"><div class="stat-icon stat-icon-amber" style="font-size:22px">📋</div><div class="stat-value">186</div><div class="stat-label">Slots Booked</div></div>
+      <div class="stat-card"><div class="stat-icon stat-icon-red" style="font-size:22px">⊘</div><div class="stat-value">3</div><div class="stat-label">Full Slots</div></div>
+    </div>
+
+    <!-- Date Picker -->
+    <div class="card card-pad" style="margin-bottom:16px;display:flex;gap:16px;align-items:center">
+      <div class="form-group" style="flex:0 0 auto">
+        <label class="form-label">Select Date</label>
+        <input type="date" class="form-control" value="2026-09-12"/>
+      </div>
+      <div class="form-group" style="flex:0 0 auto">
+        <label class="form-label">Center</label>
+        <select class="form-control" style="width:240px"><option>Nalgonda Grain Procurement Center</option><option>Miryalaguda Center</option><option>Bhongir Center</option></select>
+      </div>
+      <button class="btn btn-primary" style="align-self:flex-end">View Slots</button>
+      <button class="btn btn-outline" style="align-self:flex-end" onclick="alert('Adding new slot...')">+ Add Slot</button>
+    </div>
+
+    <!-- Slot Cards Grid -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px">
+
+      <!-- Slot 1 — Available -->
+      <div class="card card-pad" style="border-left:4px solid var(--green-500)">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div style="font-size:15px;font-weight:800">08:00 AM – 09:00 AM</div>
+          <span class="badge badge-green">Active</span>
+        </div>
+        <div style="display:flex;gap:16px;margin-bottom:12px">
+          <div style="text-align:center;flex:1;background:var(--green-25);border-radius:var(--radius-sm);padding:10px">
+            <div style="font-size:22px;font-weight:800;color:var(--green-800)">1</div>
+            <div style="font-size:11px;color:var(--text-light)">Booked</div>
+          </div>
+          <div style="text-align:center;flex:1;background:var(--green-25);border-radius:var(--radius-sm);padding:10px">
+            <div style="font-size:22px;font-weight:800;color:var(--green-800)">2</div>
+            <div style="font-size:11px;color:var(--text-light)">Remaining</div>
+          </div>
+          <div style="text-align:center;flex:1;background:var(--green-25);border-radius:var(--radius-sm);padding:10px">
+            <div style="font-size:22px;font-weight:800">3</div>
+            <div style="font-size:11px;color:var(--text-light)">Capacity</div>
+          </div>
+        </div>
+        <div style="background:var(--border);border-radius:4px;height:8px;overflow:hidden"><div style="height:100%;width:33%;background:var(--green-500);border-radius:4px"></div></div>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button class="btn btn-outline btn-sm" style="flex:1">View Farmers</button>
+          <button class="btn btn-ghost btn-sm" onclick="toggleSlot(this,'close')" style="color:var(--red-500)">Close</button>
+        </div>
+      </div>
+
+      <!-- Slot 2 — Filling Fast -->
+      <div class="card card-pad" style="border-left:4px solid var(--amber-500)">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div style="font-size:15px;font-weight:800">09:00 AM – 10:00 AM</div>
+          <span class="badge badge-amber">Filling Fast</span>
+        </div>
+        <div style="display:flex;gap:16px;margin-bottom:12px">
+          <div style="text-align:center;flex:1;background:var(--amber-50);border-radius:var(--radius-sm);padding:10px">
+            <div style="font-size:22px;font-weight:800;color:#d97706">2</div>
+            <div style="font-size:11px;color:var(--text-light)">Booked</div>
+          </div>
+          <div style="text-align:center;flex:1;background:var(--amber-50);border-radius:var(--radius-sm);padding:10px">
+            <div style="font-size:22px;font-weight:800;color:#d97706">1</div>
+            <div style="font-size:11px;color:var(--text-light)">Remaining</div>
+          </div>
+          <div style="text-align:center;flex:1;background:var(--amber-50);border-radius:var(--radius-sm);padding:10px">
+            <div style="font-size:22px;font-weight:800">3</div>
+            <div style="font-size:11px;color:var(--text-light)">Capacity</div>
+          </div>
+        </div>
+        <div style="background:var(--border);border-radius:4px;height:8px;overflow:hidden"><div style="height:100%;width:67%;background:var(--amber-500);border-radius:4px"></div></div>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button class="btn btn-outline btn-sm" style="flex:1">View Farmers</button>
+          <button class="btn btn-ghost btn-sm" style="color:var(--red-500)">Close</button>
+        </div>
+      </div>
+
+      <!-- Slot 3 — Full -->
+      <div class="card card-pad" style="border-left:4px solid var(--red-500);opacity:.85">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div style="font-size:15px;font-weight:800">10:00 AM – 11:00 AM</div>
+          <span class="badge badge-red">Full</span>
+        </div>
+        <div style="display:flex;gap:16px;margin-bottom:12px">
+          <div style="text-align:center;flex:1;background:var(--red-100);border-radius:var(--radius-sm);padding:10px">
+            <div style="font-size:22px;font-weight:800;color:var(--red-500)">3</div>
+            <div style="font-size:11px;color:var(--text-light)">Booked</div>
+          </div>
+          <div style="text-align:center;flex:1;background:var(--red-100);border-radius:var(--radius-sm);padding:10px">
+            <div style="font-size:22px;font-weight:800;color:var(--red-500)">0</div>
+            <div style="font-size:11px;color:var(--text-light)">Remaining</div>
+          </div>
+          <div style="text-align:center;flex:1;background:var(--red-100);border-radius:var(--radius-sm);padding:10px">
+            <div style="font-size:22px;font-weight:800">3</div>
+            <div style="font-size:11px;color:var(--text-light)">Capacity</div>
+          </div>
+        </div>
+        <div style="background:var(--border);border-radius:4px;height:8px;overflow:hidden"><div style="height:100%;width:100%;background:var(--red-500);border-radius:4px"></div></div>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button class="btn btn-outline btn-sm" style="flex:1">View Farmers</button>
+          <button class="btn btn-ghost btn-sm" style="color:var(--green-800)" onclick="alert('Slot reopened with +1 capacity')">Expand</button>
+        </div>
+      </div>
+
+      <!-- Slots 4–9 — Available -->
+      <div class="card card-pad" style="border-left:4px solid var(--green-500)"><div style="display:flex;justify-content:space-between;margin-bottom:12px"><div style="font-weight:800">11:00 AM – 12:00 PM</div><span class="badge badge-green">Active</span></div><div style="display:flex;gap:12px;margin-bottom:10px"><div style="flex:1;background:var(--green-25);border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:800;color:var(--green-800)">0</div><div style="font-size:10px;color:var(--text-light)">Booked</div></div><div style="flex:1;background:var(--green-25);border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:800">3</div><div style="font-size:10px;color:var(--text-light)">Remaining</div></div></div><div style="background:var(--border);border-radius:4px;height:6px"><div style="width:0%;height:100%;background:var(--green-500);border-radius:4px"></div></div><div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-outline btn-sm" style="flex:1">View Farmers</button><button class="btn btn-ghost btn-sm" style="color:var(--red-500)">Close</button></div></div>
+
+      <div class="card card-pad" style="border-left:4px solid var(--green-500)"><div style="display:flex;justify-content:space-between;margin-bottom:12px"><div style="font-weight:800">12:00 PM – 01:00 PM</div><span class="badge badge-green">Active</span></div><div style="display:flex;gap:12px;margin-bottom:10px"><div style="flex:1;background:var(--green-25);border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:800;color:var(--green-800)">1</div><div style="font-size:10px;color:var(--text-light)">Booked</div></div><div style="flex:1;background:var(--green-25);border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:800">2</div><div style="font-size:10px;color:var(--text-light)">Remaining</div></div></div><div style="background:var(--border);border-radius:4px;height:6px"><div style="width:33%;height:100%;background:var(--green-500);border-radius:4px"></div></div><div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-outline btn-sm" style="flex:1">View Farmers</button><button class="btn btn-ghost btn-sm" style="color:var(--red-500)">Close</button></div></div>
+
+      <div class="card card-pad" style="border-left:4px solid var(--green-500)"><div style="display:flex;justify-content:space-between;margin-bottom:12px"><div style="font-weight:800">01:00 PM – 02:00 PM</div><span class="badge badge-green">Active</span></div><div style="display:flex;gap:12px;margin-bottom:10px"><div style="flex:1;background:var(--green-25);border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:800;color:var(--green-800)">0</div><div style="font-size:10px;color:var(--text-light)">Booked</div></div><div style="flex:1;background:var(--green-25);border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:800">3</div><div style="font-size:10px;color:var(--text-light)">Remaining</div></div></div><div style="background:var(--border);border-radius:4px;height:6px"><div style="width:0%;height:100%;background:var(--green-500);border-radius:4px"></div></div><div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-outline btn-sm" style="flex:1">View Farmers</button><button class="btn btn-ghost btn-sm" style="color:var(--red-500)">Close</button></div></div>
+
+      <div class="card card-pad" style="border-left:4px solid var(--amber-500)"><div style="display:flex;justify-content:space-between;margin-bottom:12px"><div style="font-weight:800">02:00 PM – 03:00 PM</div><span class="badge badge-amber">Filling Fast</span></div><div style="display:flex;gap:12px;margin-bottom:10px"><div style="flex:1;background:var(--amber-50);border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:800;color:#d97706">2</div><div style="font-size:10px;color:var(--text-light)">Booked</div></div><div style="flex:1;background:var(--amber-50);border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:800">1</div><div style="font-size:10px;color:var(--text-light)">Remaining</div></div></div><div style="background:var(--border);border-radius:4px;height:6px"><div style="width:67%;height:100%;background:var(--amber-500);border-radius:4px"></div></div><div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-outline btn-sm" style="flex:1">View Farmers</button><button class="btn btn-ghost btn-sm" style="color:var(--red-500)">Close</button></div></div>
+
+      <div class="card card-pad" style="border-left:4px solid var(--green-500)"><div style="display:flex;justify-content:space-between;margin-bottom:12px"><div style="font-weight:800">03:00 PM – 04:00 PM</div><span class="badge badge-green">Active</span></div><div style="display:flex;gap:12px;margin-bottom:10px"><div style="flex:1;background:var(--green-25);border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:800;color:var(--green-800)">1</div><div style="font-size:10px;color:var(--text-light)">Booked</div></div><div style="flex:1;background:var(--green-25);border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:800">2</div><div style="font-size:10px;color:var(--text-light)">Remaining</div></div></div><div style="background:var(--border);border-radius:4px;height:6px"><div style="width:33%;height:100%;background:var(--green-500);border-radius:4px"></div></div><div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-outline btn-sm" style="flex:1">View Farmers</button><button class="btn btn-ghost btn-sm" style="color:var(--red-500)">Close</button></div></div>
+
+      <div class="card card-pad" style="border-left:4px solid var(--green-500)"><div style="display:flex;justify-content:space-between;margin-bottom:12px"><div style="font-weight:800">04:00 PM – 05:00 PM</div><span class="badge badge-green">Active</span></div><div style="display:flex;gap:12px;margin-bottom:10px"><div style="flex:1;background:var(--green-25);border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:800;color:var(--green-800)">0</div><div style="font-size:10px;color:var(--text-light)">Booked</div></div><div style="flex:1;background:var(--green-25);border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:800">3</div><div style="font-size:10px;color:var(--text-light)">Remaining</div></div></div><div style="background:var(--border);border-radius:4px;height:6px"><div style="width:0%;height:100%;background:var(--green-500);border-radius:4px"></div></div><div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-outline btn-sm" style="flex:1">View Farmers</button><button class="btn btn-ghost btn-sm" style="color:var(--red-500)">Close</button></div></div>
+
+    </div>
+  </div>
+  <div class="page-footer"><span>© 2026 Sankalp. All rights reserved.</span><div class="brand-right">🌿 For Farmers | For a Stronger Tomorrow</div></div>
+</main>
+</div>
+<script src="../js/app.js"></script>
+<script>
+function toggleSlot(btn, action) {
+  if (action === 'close') { if (confirm('Close this slot? No more bookings will be accepted.')) { btn.textContent = 'Reopen'; btn.setAttribute('onclick','toggleSlot(this,"open")'); btn.closest('.card').style.opacity = '0.5'; } }
+  else { btn.textContent = 'Close'; btn.setAttribute('onclick','toggleSlot(this,"close")'); btn.closest('.card').style.opacity = '1'; }
+}
+</script>
+<script>
+(function(){
+  var btn=document.getElementById('dmToggle');
+  if(!btn) return;
+  var apply=function(t){
+    document.documentElement.setAttribute('data-theme',t);
+    btn.textContent=t==='dark'?'☀️':'🌙';
+    localStorage.setItem('sankalp_theme',t);
+  };
+  apply(localStorage.getItem('sankalp_theme')||'light');
+  btn.addEventListener('click',function(){
+    apply(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
+  });
+})();
+</script>
+</body>
+</html>

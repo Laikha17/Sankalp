@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Slot – Sankalp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+<style>
+[data-theme="dark"] body{background:#0f1a13!important;color:#e8f5ee!important}
+[data-theme="dark"] .sidebar{background:#111e15!important;border-color:#2a4a32!important}
+[data-theme="dark"] .nav-item{color:#86a891!important}
+[data-theme="dark"] .nav-item:hover,[data-theme="dark"] .nav-item.active{background:#1a2e1f!important;color:#52a87a!important}
+[data-theme="dark"] .main{background:#0f1a13!important}
+[data-theme="dark"] .topbar{background:#111e15!important;border-color:#2a4a32!important}
+[data-theme="dark"] .card{background:#1a2e1f!important;border-color:#2a4a32!important}
+[data-theme="dark"] table thead tr{background:#0f1a13!important}
+[data-theme="dark"] th,td{color:#c8e6d4!important;border-color:#2a4a32!important}
+[data-theme="dark"] .stat-card{background:#1a2e1f!important;border-color:#2a4a32!important}
+[data-theme="dark"] .page-footer{background:#111e15!important;color:#6b8a73!important}
+.dm-toggle{width:32px;height:32px;border-radius:50%;background:#e8f5ee;border:1.5px solid #c8e6d4;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .2s;flex-shrink:0}
+[data-theme="dark"] .dm-toggle{background:#1a2e1f;border-color:#2a4a32}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <a href="../index.html" class="logo-mark flex items-center" style="gap:10px;text-decoration:none">
+      <img src="../images/logo.jpg" alt="Sankalp" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #c8e6d4;">
+      <div class="logo-text"><strong>Sankalp</strong><span>From Farm to Fair Markets</span></div>
+    </a>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</a>
+    <a href="book-slot.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Book Slot</a>
+    <a href="my-turn.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>My Turn</a>
+    <a href="procurement-status.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Procurement Status</a>
+    <div class="nav-divider"></div>
+    <a href="my-profile.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>My Profile</a>
+    <a href="settings.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings</a>
+    <a href="help-support.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>Help &amp; Support</a>
+    <a href="../login.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Logout</a>
+  </nav>
+  <div class="sidebar-footer"><div style="font-size:28px;margin-bottom:8px">🌿</div><div class="sidebar-tagline">Empowering Farmers<br>Enriching India</div></div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div></div>
+    <div class="topbar-right" style="gap:10px"><button class="dm-toggle" id="dmToggle" title="Toggle Dark Mode">🌙</button>
+      <button class="notif-btn" data-notif-btn><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><div class="notif-dot"></div></button>
+      <div class="user-pill"><div class="user-avatar" style="font-size:18px">👨‍🌾</div><div class="user-name">Mallaiah Goud</div><span>▾</span></div>
+    </div>
+  </div>
+  <div class="notif-overlay" id="notifOverlay"><div class="notif-panel"><div class="notif-header"><h3>🔔 Notifications</h3><button class="notif-close">✕</button></div><div class="notif-list"></div></div></div>
+
+  <div class="page-content">
+    <!-- Page Header -->
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
+      <a href="dashboard.html" class="btn btn-outline btn-sm">← Back</a>
+      <div style="flex:1;text-align:center">
+        <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:4px">
+          <span style="font-size:28px">📅</span>
+          <h1 style="font-size:24px;font-weight:800">Book Procurement Slot</h1>
+        </div>
+        <p style="color:var(--text-light);font-size:14px">Select a date and choose a convenient time slot</p>
+      </div>
+    </div>
+
+    <!-- Progress Stepper -->
+    <div class="card card-pad" style="margin-bottom:24px">
+      <div class="stepper">
+        <div class="step active">
+          <div class="step-circle" style="background:var(--green-800);color:white;border-color:var(--green-800)">1</div>
+          <div class="step-label" style="color:var(--green-800)">Select Date</div>
+          <div class="step-sub">Choose a date</div>
+        </div>
+        <div class="step">
+          <div class="step-circle">2</div>
+          <div class="step-label">Choose Slot</div>
+          <div class="step-sub">View available slots</div>
+        </div>
+        <div class="step">
+          <div class="step-circle">3</div>
+          <div class="step-label">Confirm</div>
+          <div class="step-sub">Review &amp; book</div>
+        </div>
+        <div class="step">
+          <div class="step-circle">4</div>
+          <div class="step-label">Done</div>
+          <div class="step-sub">Get confirmation</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking Layout -->
+    <div class="booking-layout">
+      <!-- Left Column -->
+      <div>
+        <!-- Date Selection -->
+        <div class="card card-pad" style="margin-bottom:20px">
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px">📅 Select Date</h3>
+          <p style="font-size:13px;color:var(--text-light);margin-bottom:16px">Choose a date to view available time slots</p>
+          <div style="display:flex;align-items:center;gap:8px">
+            <button class="date-scroll-btn">‹</button>
+            <div class="date-row" style="flex:1">
+              <div class="date-btn active"><div class="day">Fri</div><div class="date-num">12</div><div class="month">Sep</div><div class="today-tag">Today</div></div>
+              <div class="date-btn"><div class="day">Sat</div><div class="date-num">13</div><div class="month">Sep</div></div>
+              <div class="date-btn"><div class="day">Sun</div><div class="date-num">14</div><div class="month">Sep</div></div>
+              <div class="date-btn"><div class="day">Mon</div><div class="date-num">15</div><div class="month">Sep</div></div>
+              <div class="date-btn"><div class="day">Tue</div><div class="date-num">16</div><div class="month">Sep</div></div>
+              <div class="date-btn"><div class="day">Wed</div><div class="date-num">17</div><div class="month">Sep</div></div>
+              <div class="date-btn"><div class="day">Thu</div><div class="date-num">18</div><div class="month">Sep</div></div>
+            </div>
+            <button class="date-scroll-btn">›</button>
+          </div>
+        </div>
+
+        <!-- Time Slots -->
+        <div class="card card-pad">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+            <div>
+              <h3 style="font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px">🕐 Available Time Slots</h3>
+              <p style="font-size:12px;color:var(--text-light);margin-top:2px">Select a time slot to book your procurement slot</p>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;font-size:12px">
+              <span><span class="dot dot-green" style="display:inline-block"></span> Available</span>
+              <span><span class="dot dot-amber" style="display:inline-block"></span> Filling Fast</span>
+              <span><span class="dot dot-red" style="display:inline-block"></span> Almost Full</span>
+              <span><span class="dot dot-gray" style="display:inline-block"></span> Full</span>
+            </div>
+          </div>
+          <div class="slots-grid">
+            <!-- Slot 1 — Available, selected -->
+            <div class="slot-card selected" data-time="08:00 AM – 09:00 AM">
+              <div class="slot-time"><span>08:00 AM – 09:00 AM</span> <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green-800)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="slot-booked">👥 1 / 3 booked</div>
+              <div class="slot-avail"><span class="dot dot-green"></span> 2 slots available</div>
+            </div>
+            <!-- Slot 2 — Filling Fast -->
+            <div class="slot-card slot-filling" data-time="09:00 AM – 10:00 AM">
+              <div class="slot-time"><span>09:00 AM – 10:00 AM</span></div>
+              <div class="slot-booked">👥 2 / 3 booked</div>
+              <div class="slot-avail"><span class="dot dot-amber"></span> 1 slot available</div>
+            </div>
+            <!-- Slot 3 — Full -->
+            <div class="slot-card slot-full" data-time="10:00 AM – 11:00 AM">
+              <div class="slot-time"><span>10:00 AM – 11:00 AM</span> <span style="color:var(--red-500);font-size:16px">⊘</span></div>
+              <div class="slot-booked">👥 3 / 3 booked</div>
+              <div class="slot-avail"><span class="dot dot-red"></span> Slot Full</div>
+            </div>
+            <!-- Slot 4 -->
+            <div class="slot-card" data-time="11:00 AM – 12:00 PM">
+              <div class="slot-time"><span>11:00 AM – 12:00 PM</span></div>
+              <div class="slot-booked">👥 0 / 3 booked</div>
+              <div class="slot-avail"><span class="dot dot-green"></span> 3 slots available</div>
+            </div>
+            <!-- Slot 5 -->
+            <div class="slot-card" data-time="12:00 PM – 01:00 PM">
+              <div class="slot-time"><span>12:00 PM – 01:00 PM</span></div>
+              <div class="slot-booked">👥 1 / 3 booked</div>
+              <div class="slot-avail"><span class="dot dot-green"></span> 2 slots available</div>
+            </div>
+            <!-- Slot 6 -->
+            <div class="slot-card" data-time="01:00 PM – 02:00 PM">
+              <div class="slot-time"><span>01:00 PM – 02:00 PM</span></div>
+              <div class="slot-booked">👥 0 / 3 booked</div>
+              <div class="slot-avail"><span class="dot dot-green"></span> 3 slots available</div>
+            </div>
+            <!-- Slot 7 -->
+            <div class="slot-card" data-time="02:00 PM – 03:00 PM">
+              <div class="slot-time"><span>02:00 PM – 03:00 PM</span></div>
+              <div class="slot-booked">👥 0 / 3 booked</div>
+              <div class="slot-avail"><span class="dot dot-green"></span> 3 slots available</div>
+            </div>
+            <!-- Slot 8 — Filling -->
+            <div class="slot-card slot-filling" data-time="03:00 PM – 04:00 PM">
+              <div class="slot-time"><span>03:00 PM – 04:00 PM</span></div>
+              <div class="slot-booked">👥 2 / 3 booked</div>
+              <div class="slot-avail"><span class="dot dot-amber"></span> 1 slot available</div>
+            </div>
+            <!-- Slot 9 -->
+            <div class="slot-card" data-time="04:00 PM – 05:00 PM">
+              <div class="slot-time"><span>04:00 PM – 05:00 PM</span></div>
+              <div class="slot-booked">👥 1 / 3 booked</div>
+              <div class="slot-avail"><span class="dot dot-green"></span> 2 slots available</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column — Selection Summary -->
+      <div class="selection-card">
+        <h3>📅 Your Selection</h3>
+        <div class="selection-row">
+          <div class="sel-icon">📅</div>
+          <div>
+            <div class="sel-label">Date</div>
+            <div class="sel-val">12 Sep 2026 (Friday)</div>
+          </div>
+        </div>
+        <div class="selection-row">
+          <div class="sel-icon">🕐</div>
+          <div>
+            <div class="sel-label">Time Slot</div>
+            <div class="sel-val" id="selSlot">08:00 AM – 09:00 AM</div>
+          </div>
+        </div>
+        <div class="selection-row">
+          <div class="sel-icon">👥</div>
+          <div>
+            <div class="sel-label">Farmers Already Booked</div>
+            <div class="sel-val">1 / 3</div>
+          </div>
+        </div>
+        <div class="selection-row">
+          <div class="sel-icon" style="background:var(--green-50)">✅</div>
+          <div>
+            <div class="sel-label">Slots Available</div>
+            <div class="sel-val" style="color:var(--green-700)">2</div>
+          </div>
+        </div>
+
+        <div class="info-box info-box-blue" style="margin:16px 0">
+          <span>ℹ️</span>
+          <span style="font-size:12px">Please reach the center on time as per your slot. You will receive a reminder 1 hour before your turn.</span>
+        </div>
+
+        <button class="btn btn-primary btn-full btn-lg" onclick="bookSlot()">Book Slot →</button>
+        <p style="font-size:11px;color:var(--text-muted);margin-top:10px;text-align:center;display:flex;align-items:center;justify-content:center;gap:4px">🔒 Your slot will be confirmed and you will receive a confirmation message in your selected language.</p>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer"><span>© 2026 Sankalp. All rights reserved.</span><div class="brand-right">🌿 For Farmers | For a Stronger Tomorrow</div></div>
+</main>
+</div>
+<script src="../js/app.js"></script>
+<script>
+function bookSlot() {
+  const slot = document.getElementById('selSlot').textContent;
+  if (confirm(`Confirm booking:\n\nDate: 12 Sep 2026\nSlot: ${slot}\nCenter: Nalgonda Grain Procurement Center\n\nProceed to book?`)) {
+    alert('✅ Slot Booked Successfully!\n\nToken No: #28\nDate: 12 Sep 2026\nTime: ' + slot + '\nCenter: Nalgonda Grain Procurement Center\n\nYou will receive an SMS confirmation shortly.');
+    window.location.href = 'my-turn.html';
+  }
+}
+</script>
+<script>
+(function(){
+  var btn=document.getElementById('dmToggle');
+  if(!btn) return;
+  var apply=function(t){
+    document.documentElement.setAttribute('data-theme',t);
+    btn.textContent=t==='dark'?'☀️':'🌙';
+    localStorage.setItem('sankalp_theme',t);
+  };
+  apply(localStorage.getItem('sankalp_theme')||'light');
+  btn.addEventListener('click',function(){
+    apply(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
+  });
+})();
+</script>
+</body>
+</html>

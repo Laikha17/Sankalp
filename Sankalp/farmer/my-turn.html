@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>My Turn – Sankalp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    [data-theme="dark"] body{background:#0f1a13!important;color:#e8f5ee!important}
+    [data-theme="dark"] .sidebar{background:#111e15!important;border-color:#2a4a32!important}
+    [data-theme="dark"] .nav-item{color:#86a891!important}
+    [data-theme="dark"] .nav-item:hover,[data-theme="dark"] .nav-item.active{background:#1a2e1f!important;color:#52a87a!important}
+    [data-theme="dark"] .main{background:#0f1a13!important}
+    [data-theme="dark"] .topbar{background:#111e15!important;border-color:#2a4a32!important}
+    [data-theme="dark"] .card{background:#1a2e1f!important;border-color:#2a4a32!important}
+    [data-theme="dark"] .page-footer{background:#111e15!important;color:#6b8a73!important}
+    .dm-toggle{width:32px;height:32px;border-radius:50%;background:#e8f5ee;border:1.5px solid #c8e6d4;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .2s;flex-shrink:0}
+    [data-theme="dark"] .dm-toggle{background:#1a2e1f;border-color:#2a4a32}
+
+    /* Token display */
+    .token-hero{text-align:center;padding:24px;background:linear-gradient(135deg,#1a5c3a,#2d7a4f);border-radius:16px;color:white;margin-bottom:20px}
+    .token-big{font-size:56px;font-weight:900;line-height:1;letter-spacing:-2px}
+    .token-sub{font-size:13px;opacity:.75;margin-top:4px}
+    .live-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border-radius:20px;padding:4px 12px;font-size:12px;margin-bottom:16px}
+    .pulse-dot{width:8px;height:8px;background:#4ade80;border-radius:50%;animation:pulse 1.5s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+
+    /* Queue stages */
+    .stage-track{display:flex;flex-direction:column;gap:0}
+    .stage-item{display:flex;align-items:flex-start;gap:16px;padding:16px 0;position:relative}
+    .stage-item:not(:last-child)::after{content:'';position:absolute;left:19px;top:52px;bottom:-4px;width:2px;background:#e4ede8}
+    .stage-item.done::after{background:#1a5c3a}
+    .stage-circle{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;border:2px solid #e4ede8;background:#f9fafb;z-index:1;transition:all .4s}
+    .stage-item.done .stage-circle{background:#1a5c3a;border-color:#1a5c3a;color:white}
+    .stage-item.active .stage-circle{background:#e8f5ee;border-color:#1a5c3a;color:#1a5c3a;box-shadow:0 0 0 4px rgba(26,92,58,.15);animation:ringPulse 1.5s infinite}
+    @keyframes ringPulse{0%,100%{box-shadow:0 0 0 4px rgba(26,92,58,.15)}50%{box-shadow:0 0 0 8px rgba(26,92,58,.05)}}
+    .stage-item.pending .stage-circle{background:#f3f4f6;border-color:#d1d5db;color:#9ca3af}
+    .stage-label{font-size:15px;font-weight:700}
+    .stage-item.done .stage-label{color:#1a5c3a}
+    .stage-item.active .stage-label{color:#1a5c3a}
+    .stage-item.pending .stage-label{color:#9ca3af}
+    .stage-sub{font-size:12px;color:var(--text-light);margin-top:2px}
+    .stage-time{font-size:11px;color:var(--text-muted);margin-top:4px}
+
+    /* Queue counter */
+    .queue-count{font-size:48px;font-weight:900;color:#1a5c3a;line-height:1;transition:all .5s}
+    .queue-bar{height:8px;background:#e4ede8;border-radius:4px;overflow:hidden;margin-top:12px}
+    .queue-fill{height:100%;background:linear-gradient(90deg,#1a5c3a,#52a87a);border-radius:4px;transition:width 1s ease}
+
+    /* Advance btn */
+    .advance-btn{background:#1a5c3a;color:white;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;width:100%;margin-top:12px}
+    .advance-btn:hover{background:#1f6e46;transform:translateY(-1px)}
+    .advance-btn:disabled{background:#c8e6d4;color:#6b8a73;cursor:not-allowed;transform:none}
+  </style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="sidebar-logo"><a href="../index.html" class="logo-mark" style="gap:10px;text-decoration:none;display:flex;align-items:center"><img src="../images/logo.jpg" alt="Sankalp" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #c8e6d4;"><div class="logo-text"><strong>Sankalp</strong><span>From Farm to Fair Markets</span></div></a>
+    <button class="sidebar-close-btn" aria-label="Close menu">✕</button></div>
+  <nav class="sidebar-nav">
+    <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</a>
+    <a href="book-slot.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Book Slot</a>
+    <a href="my-turn.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>My Turn</a>
+    <a href="procurement-status.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Procurement Status</a>
+    <div class="nav-divider"></div>
+    <a href="my-profile.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>My Profile</a>
+    <a href="settings.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg>Settings</a>
+    <a href="help-support.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg>Help &amp; Support</a>
+    <a href="../index.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Home Portal</a>
+  </nav>
+  <div class="sidebar-footer"><div style="font-size:28px;margin-bottom:8px">🌿</div><div class="sidebar-tagline">Supporting Farmers<br>Better Tomorrows</div></div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div><h1 style="font-size:20px;font-weight:800">🕐 My Turn</h1><p style="font-size:13px;color:var(--text-light)">Live queue tracking for your booked slot</p></div>
+    <div class="topbar-right" style="gap:10px">
+      <button class="dm-toggle" id="dmToggle">🌙</button>
+      <div class="user-pill"><div class="user-avatar" style="font-size:18px">👨‍🌾</div><div class="user-name">Mallaiah Goud</div><span>▾</span></div>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <!-- No booking state -->
+    <div id="noBooking" style="display:none" class="card card-pad" style="text-align:center;padding:48px">
+      <div style="font-size:48px;margin-bottom:16px">📅</div>
+      <h3 style="font-size:18px;font-weight:700;margin-bottom:8px">No Active Booking</h3>
+      <p style="color:var(--text-light);margin-bottom:20px">You haven't booked a slot yet. Book a slot to track your turn.</p>
+      <a href="book-slot.html" class="btn btn-primary">Book a Slot →</a>
+    </div>
+
+    <!-- Active booking state -->
+    <div id="activeBooking">
+      <!-- Token Hero -->
+      <div class="token-hero" style="margin-bottom:20px">
+        <div class="live-badge"><span class="pulse-dot"></span> Live Queue</div>
+        <div class="token-big" id="tokenDisplay">#T-28</div>
+        <div class="token-sub">Your Token Number</div>
+        <div style="display:flex;justify-content:center;gap:32px;margin-top:16px;flex-wrap:wrap">
+          <div style="text-align:center"><div style="font-size:11px;opacity:.7;text-transform:uppercase;letter-spacing:1px">Date</div><div style="font-size:14px;font-weight:700" id="bookingDate">12 Sep 2026</div></div>
+          <div style="text-align:center"><div style="font-size:11px;opacity:.7;text-transform:uppercase;letter-spacing:1px">Slot</div><div style="font-size:14px;font-weight:700" id="bookingSlot">08:00 – 09:00 AM</div></div>
+          <div style="text-align:center"><div style="font-size:11px;opacity:.7;text-transform:uppercase;letter-spacing:1px">Center</div><div style="font-size:14px;font-weight:700">Nalgonda Center</div></div>
+        </div>
+      </div>
+
+      <div class="grid-2-1">
+        <!-- LEFT: Stage tracker -->
+        <div>
+          <div class="card card-pad" style="margin-bottom:16px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+              <h3 style="font-size:16px;font-weight:700">📍 Queue Journey</h3>
+              <span class="badge badge-green" id="statusBadge">🟢 In Queue</span>
+            </div>
+            <div class="stage-track" id="stageTrack">
+              <div class="stage-item done" id="stage0">
+                <div class="stage-circle">✓</div>
+                <div><div class="stage-label">Slot Booked</div><div class="stage-sub">Booking confirmed, token issued</div><div class="stage-time" id="t0">Today, 10:00 AM</div></div>
+              </div>
+              <div class="stage-item active" id="stage1">
+                <div class="stage-circle">⏳</div>
+                <div><div class="stage-label">Waiting in Queue</div><div class="stage-sub" id="queueDesc">8 farmers ahead of you</div><div class="stage-time">Estimated wait: <strong id="waitTime">~40 mins</strong></div></div>
+              </div>
+              <div class="stage-item pending" id="stage2">
+                <div class="stage-circle">📢</div>
+                <div><div class="stage-label">Your Turn Called</div><div class="stage-sub">Proceed to the counter</div><div class="stage-time">—</div></div>
+              </div>
+              <div class="stage-item pending" id="stage3">
+                <div class="stage-circle">⚖️</div>
+                <div><div class="stage-label">At Counter – Weighing</div><div class="stage-sub">Produce being weighed &amp; verified</div><div class="stage-time">—</div></div>
+              </div>
+              <div class="stage-item pending" id="stage4">
+                <div class="stage-circle">✅</div>
+                <div><div class="stage-label">Completed</div><div class="stage-sub">Proceed to Procurement Status</div><div class="stage-time">—</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-pad" style="background:#fffbeb;border-color:#fde68a">
+            <div style="display:flex;gap:12px">
+              <span style="font-size:24px">📢</span>
+              <div>
+                <h3 style="font-size:15px;font-weight:700;margin-bottom:8px">Important Reminders</h3>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--text-mid)">
+                  <li>• Keep original documents ready (Aadhaar, land records)</li>
+                  <li>• Bring your produce to the center on time</li>
+                  <li>• You will be notified when your token is called</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Queue counter + simulate -->
+        <div>
+          <div class="card card-pad" style="margin-bottom:16px;text-align:center">
+            <div style="font-size:13px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Farmers Ahead of You</div>
+            <div class="queue-count" id="queueCount">8</div>
+            <div class="queue-bar"><div class="queue-fill" id="queueBar" style="width:27%"></div></div>
+            <div style="font-size:12px;color:var(--text-light);margin-top:6px"><span id="queueProgress">2 of 10 served</span></div>
+            <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border)">
+              <div style="font-size:13px;color:var(--text-light);margin-bottom:4px">Estimated Wait</div>
+              <div style="font-size:28px;font-weight:800;color:#1a5c3a" id="waitDisp">~40 min</div>
+            </div>
+            <button class="advance-btn" id="advanceBtn" onclick="advanceQueue()">⬇ Simulate Queue Move</button>
+          </div>
+
+          <div class="card card-pad" style="margin-bottom:16px">
+            <h3 style="font-size:14px;font-weight:700;margin-bottom:12px">📍 Center Details</h3>
+            <p style="font-size:14px;font-weight:600;margin-bottom:2px">Nalgonda Grain Procurement Center</p>
+            <p style="font-size:13px;color:var(--text-light);margin-bottom:12px">Nalgonda, Telangana – 508001</p>
+            <a href="#" style="font-size:13px;font-weight:700;color:#1a5c3a;text-decoration:none">🗺️ View on Map ↗</a>
+          </div>
+
+          <div class="card card-pad" id="completedCard" style="display:none;background:#f0fdf4;border-color:#86efac;text-align:center;padding:24px">
+            <div style="font-size:40px;margin-bottom:12px">🎉</div>
+            <h3 style="font-size:16px;font-weight:700;color:#1a5c3a;margin-bottom:8px">Your Turn is Done!</h3>
+            <p style="font-size:13px;color:#4ade80;margin-bottom:16px">Proceed to check your procurement status.</p>
+            <a href="procurement-status.html" class="btn btn-primary" style="width:100%;justify-content:center">View Procurement Status →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer"><span>© 2026 Sankalp. All rights reserved.</span><div class="brand-right">🌿 For Farmers | For a Stronger Tomorrow</div></div>
+</main>
+
+    <!-- ── Mobile Bottom Navigation Bar ── -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <a href="dashboard.html" class="mobile-nav-item ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
+        <span>Home</span>
+      </a>
+      <a href="book-slot.html" class="mobile-nav-item ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
+        <span>Book Slot</span>
+      </a>
+      <a href="my-turn.html" class="mobile-nav-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+        <span>My Turn</span>
+      </a>
+      <a href="procurement-status.html" class="mobile-nav-item ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg>
+        <span>Status</span>
+      </a>
+      <a href="#menu" class="mobile-nav-item" data-open-drawer>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
+        <span>Menu</span>
+      </a>
+    </nav>
+</div>
+<script src="../js/app.js"></script>
+<script>
+// Load booking from localStorage
+const booking = JSON.parse(localStorage.getItem('sankalp_booking') || 'null');
+if (!booking) {
+  document.getElementById('noBooking').style.display = 'block';
+  document.getElementById('activeBooking').style.display = 'none';
+} else {
+  document.getElementById('noBooking').style.display = 'none';
+  document.getElementById('activeBooking').style.display = 'block';
+  document.getElementById('tokenDisplay').textContent = booking.token || '#T-28';
+  document.getElementById('bookingDate').textContent = booking.date || '12 Sep 2026';
+  document.getElementById('bookingSlot').textContent = booking.slot || '08:00 – 09:00 AM';
+}
+
+let queuePos = 8;
+let totalServed = 2;
+const totalSlot = 11;
+let currentStage = 1;
+
+function updateQueue() {
+  document.getElementById('queueCount').textContent = queuePos;
+  document.getElementById('waitTime').textContent = '~' + (queuePos * 5) + ' mins';
+  document.getElementById('waitDisp').textContent = '~' + (queuePos * 5) + ' min';
+  document.getElementById('queueDesc').textContent = queuePos === 0 ? 'You are next!' : queuePos + ' farmer(s) ahead of you';
+  document.getElementById('queueProgress').textContent = totalServed + ' of ' + totalSlot + ' served';
+  const pct = Math.min(100, (totalServed / totalSlot) * 100);
+  document.getElementById('queueBar').style.width = pct + '%';
+}
+
+function advanceQueue() {
+  if (queuePos > 0) {
+    queuePos--;
+    totalServed++;
+    updateQueue();
+    if (queuePos === 0) {
+      setStage(2);
+      document.getElementById('advanceBtn').textContent = '⬇ Proceed to Counter';
+      document.getElementById('statusBadge').textContent = '🔔 Your Turn!';
+      document.getElementById('statusBadge').className = 'badge badge-amber';
+    }
+  } else if (currentStage === 2) {
+    setStage(3);
+    document.getElementById('advanceBtn').textContent = '⬇ Complete Weighing';
+  } else if (currentStage === 3) {
+    setStage(4);
+    document.getElementById('advanceBtn').disabled = true;
+    document.getElementById('advanceBtn').textContent = '✅ All Done';
+    document.getElementById('completedCard').style.display = 'block';
+    document.getElementById('statusBadge').textContent = '✅ Completed';
+    document.getElementById('statusBadge').className = 'badge badge-green';
+    // Save completion to localStorage for procurement status
+    const bk = JSON.parse(localStorage.getItem('sankalp_booking') || '{}');
+    bk.turnCompleted = true;
+    localStorage.setItem('sankalp_booking', JSON.stringify(bk));
+  }
+}
+
+function setStage(n) {
+  currentStage = n;
+  for (let i = 0; i <= 4; i++) {
+    const el = document.getElementById('stage' + i);
+    if (!el) continue;
+    el.className = 'stage-item ' + (i < n ? 'done' : i === n ? 'active' : 'pending');
+    const circle = el.querySelector('.stage-circle');
+    if (i < n) circle.textContent = '✓';
+  }
+}
+
+updateQueue();
+
+// Dark mode
+const dmBtn = document.getElementById('dmToggle');
+const applyTheme = t => { document.documentElement.setAttribute('data-theme',t); dmBtn.textContent=t==='dark'?'☀️':'🌙'; localStorage.setItem('sankalp_theme',t); };
+applyTheme(localStorage.getItem('sankalp_theme')||'light');
+dmBtn.addEventListener('click', ()=>{ applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'); });
+</script>
+
+<script>
+// Show logged-in user name
+(function(){
+  var fu = JSON.parse(localStorage.getItem('sankalp_farmer_user')||'{}');
+  if(fu.name){
+    document.querySelectorAll('.user-name').forEach(function(el){el.textContent=fu.name});
+  }
+})();
+</script>
+</body>
+</html>

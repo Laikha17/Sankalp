@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reports &amp; Analytics – Sankalp Authority</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .chart-container { display:flex; align-items:flex-end; gap:6px; height:180px; padding:0 8px; }
+    .bar-group { display:flex; align-items:flex-end; gap:3px; flex:1; flex-direction:column; }
+    .bar-wrap { display:flex;align-items:flex-end;gap:3px;flex:1;width:100%; }
+    .bar { flex:1; border-radius:4px 4px 0 0; transition:height .4s ease; cursor:pointer; }
+    .bar:hover { opacity:.85; }
+    .x-label { text-align:center; font-size:10px; color:var(--text-muted); margin-top:4px; flex:1; }
+    .donut-ring { position:relative; width:160px; height:160px; margin:0 auto; }
+    .donut-ring svg { transform:rotate(-90deg); }
+    .donut-center { position:absolute; inset:0; display:flex;flex-direction:column;align-items:center;justify-content:center; }
+  </style>
+<style>
+[data-theme="dark"] body{background:#0f1a13!important;color:#e8f5ee!important}
+[data-theme="dark"] .sidebar{background:#111e15!important;border-color:#2a4a32!important}
+[data-theme="dark"] .nav-item{color:#86a891!important}
+[data-theme="dark"] .nav-item:hover,[data-theme="dark"] .nav-item.active{background:#1a2e1f!important;color:#52a87a!important}
+[data-theme="dark"] .main{background:#0f1a13!important}
+[data-theme="dark"] .topbar{background:#111e15!important;border-color:#2a4a32!important}
+[data-theme="dark"] .card{background:#1a2e1f!important;border-color:#2a4a32!important}
+[data-theme="dark"] table thead tr{background:#0f1a13!important}
+[data-theme="dark"] th,td{color:#c8e6d4!important;border-color:#2a4a32!important}
+[data-theme="dark"] .stat-card{background:#1a2e1f!important;border-color:#2a4a32!important}
+[data-theme="dark"] .page-footer{background:#111e15!important;color:#6b8a73!important}
+.dm-toggle{width:32px;height:32px;border-radius:50%;background:#e8f5ee;border:1.5px solid #c8e6d4;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .2s;flex-shrink:0}
+[data-theme="dark"] .dm-toggle{background:#1a2e1f;border-color:#2a4a32}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="sidebar-logo"><a href="../index.html" class="logo-mark flex items-center" style="gap:10px;text-decoration:none"><img src="../images/logo.jpg" alt="Sankalp" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #c8e6d4;"><div class="logo-text"><strong>Sankalp</strong><span>From Farm to Fair Markets</span></div></a></div>
+  <nav class="sidebar-nav">
+    <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Dashboard</a>
+    <a href="register-farmer.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/></svg>Register Farmer</a>
+    <a href="mandal-farmers.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Mandal-wise Farmers</a>
+    <a href="slot-management.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>Slot Management</a>
+    <a href="farmer-bookings.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>Farmer Bookings</a>
+    <a href="#" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Procurement Mgmt</a>
+    <a href="#" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Payment Update</a>
+    <a href="reports-analytics.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Reports &amp; Analytics</a>
+    <a href="center-management.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Center Management</a>
+    <div class="nav-divider"></div>
+    <a href="settings.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg>Settings</a>
+    <a href="help-support.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg>Help &amp; Support</a>
+    <a href="../login.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Logout</a>
+  </nav>
+  <div class="sidebar-footer"><div style="font-size:14px;font-weight:700;color:var(--green-800)">Better Farmers<br>Brighter Tomorrow</div></div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div><h1 style="font-size:20px;font-weight:800">Reports &amp; Analytics</h1><p style="font-size:13px;color:var(--text-light)">Insights for better procurement decisions</p></div>
+    <div class="topbar-right" style="gap:10px"><button class="dm-toggle" id="dmToggle" title="Toggle Dark Mode">🌙</button>
+      <select class="form-control" style="width:140px"><option>This Week</option><option>This Month</option><option>Last Month</option><option>This Year</option></select>
+      <button class="btn btn-primary" onclick="alert('Exporting report...')">📥 Export PDF</button>
+      <div class="user-pill"><div class="user-avatar" style="font-size:18px">👨‍💼</div><div class="user-name">R. Kumar</div><span>▾</span></div>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <!-- Key Metrics -->
+    <div class="stat-cards stat-cards-4" style="margin-bottom:24px">
+      <div class="stat-card"><div class="stat-icon stat-icon-green" style="font-size:22px">🌾</div><div class="stat-value">68,540 kg</div><div class="stat-label">Total Produce This Week</div><div class="stat-sub" style="color:var(--green-700)">↑ 12% vs last week</div></div>
+      <div class="stat-card"><div class="stat-icon stat-icon-blue" style="font-size:22px">👥</div><div class="stat-value">842</div><div class="stat-label">Farmers Served This Week</div><div class="stat-sub" style="color:var(--green-700)">↑ 8% vs last week</div></div>
+      <div class="stat-card"><div class="stat-icon stat-icon-amber" style="font-size:22px">📅</div><div class="stat-value">94%</div><div class="stat-label">Slot Utilization Rate</div><div class="stat-sub" style="color:var(--green-700)">↑ 3% vs last week</div></div>
+      <div class="stat-card"><div class="stat-icon stat-icon-purple" style="font-size:22px">⭐</div><div class="stat-value">4.8/5</div><div class="stat-label">Average Satisfaction Score</div></div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:20px">
+      <!-- Bar Chart: Weekly Procurement -->
+      <div class="card card-pad">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+          <h3 style="font-size:15px;font-weight:700">📊 Procurement Volume (Weekly)</h3>
+          <div class="chart-legend">
+            <div class="chart-legend-item"><div class="legend-dot" style="background:var(--green-700)"></div>Qty (quintals)</div>
+            <div class="chart-legend-item"><div class="legend-dot" style="background:var(--green-200)"></div>Farmers</div>
+          </div>
+        </div>
+        <div class="chart-container" id="weeklyChart"></div>
+        <div style="display:flex;margin-top:4px">
+          <span class="x-label">8 Sep</span>
+          <span class="x-label">9 Sep</span>
+          <span class="x-label">10 Sep</span>
+          <span class="x-label">11 Sep</span>
+          <span class="x-label">12 Sep</span>
+        </div>
+      </div>
+
+      <!-- Crop Distribution Donut -->
+      <div class="card card-pad">
+        <h3 style="font-size:15px;font-weight:700;margin-bottom:16px">🌾 Crop Distribution</h3>
+        <div class="donut-ring">
+          <svg width="160" height="160" viewBox="0 0 160 160">
+            <!-- Paddy 55% -->
+            <circle cx="80" cy="80" r="60" fill="none" stroke="#e8f5ee" stroke-width="24"/>
+            <circle cx="80" cy="80" r="60" fill="none" stroke="#1a5c3a" stroke-width="24" stroke-dasharray="207 170" stroke-dashoffset="0"/>
+            <!-- Rice 20% -->
+            <circle cx="80" cy="80" r="60" fill="none" stroke="#52a87a" stroke-width="24" stroke-dasharray="75 302" stroke-dashoffset="-207"/>
+            <!-- Maize 15% -->
+            <circle cx="80" cy="80" r="60" fill="none" stroke="#b8e4c9" stroke-width="24" stroke-dasharray="57 320" stroke-dashoffset="-282"/>
+            <!-- Other 10% -->
+            <circle cx="80" cy="80" r="60" fill="none" stroke="#fde68a" stroke-width="24" stroke-dasharray="38 339" stroke-dashoffset="-339"/>
+          </svg>
+          <div class="donut-center">
+            <div style="font-size:22px;font-weight:800;color:var(--green-800)">4</div>
+            <div style="font-size:11px;color:var(--text-light)">Crop Types</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:16px">
+          <div style="display:flex;justify-content:space-between;align-items:center"><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;border-radius:3px;background:#1a5c3a"></div><span style="font-size:13px">Paddy (Rice)</span></div><strong>55%</strong></div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;border-radius:3px;background:#52a87a"></div><span style="font-size:13px">Rice</span></div><strong>20%</strong></div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;border-radius:3px;background:#b8e4c9"></div><span style="font-size:13px">Maize</span></div><strong>15%</strong></div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;border-radius:3px;background:#fde68a"></div><span style="font-size:13px">Others</span></div><strong>10%</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mandal-wise Performance Table -->
+    <div class="card card-pad">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+        <h3 style="font-size:16px;font-weight:700">📋 Mandal-wise Performance</h3>
+        <button class="btn btn-outline btn-sm" onclick="alert('Downloading CSV...')">📥 Download CSV</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Mandal</th><th>Farmers Registered</th><th>Bookings This Week</th><th>Produce Procured (kg)</th><th>Avg Quantity/Farmer</th><th>Completion Rate</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Nalgonda</strong></td><td>3,450</td><td>312</td><td>24,800</td><td>79 kg</td><td><span class="badge badge-green">96%</span></td></tr>
+            <tr><td><strong>Munugode</strong></td><td>2,180</td><td>198</td><td>15,600</td><td>79 kg</td><td><span class="badge badge-green">94%</span></td></tr>
+            <tr><td><strong>Miryalaguda</strong></td><td>1,890</td><td>156</td><td>12,400</td><td>80 kg</td><td><span class="badge badge-amber">88%</span></td></tr>
+            <tr><td><strong>Bhongir</strong></td><td>1,245</td><td>108</td><td>8,600</td><td>80 kg</td><td><span class="badge badge-green">92%</span></td></tr>
+            <tr><td><strong>Thungathurthy</strong></td><td>980</td><td>68</td><td>5,400</td><td>79 kg</td><td><span class="badge badge-amber">85%</span></td></tr>
+            <tr><td><strong>Others</strong></td><td>500</td><td>42</td><td>1,740</td><td>41 kg</td><td><span class="badge badge-red">78%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer"><span>© 2026 Sankalp. All rights reserved.</span><div class="brand-right">🌿 For Farmers | For a Stronger Tomorrow</div></div>
+</main>
+</div>
+<script src="../js/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const data = [
+    { label:'8 Sep', qty:45, farmers:20 },
+    { label:'9 Sep', qty:78, farmers:32 },
+    { label:'10 Sep', qty:110, farmers:48 },
+    { label:'11 Sep', qty:155, farmers:65 },
+    { label:'12 Sep', qty:190, farmers:80 },
+  ];
+  const maxVal = 200;
+  const chart = document.getElementById('weeklyChart');
+  if (chart) {
+    chart.innerHTML = data.map(d => `
+      <div style="flex:1;display:flex;align-items:flex-end;gap:4px;height:180px">
+        <div class="bar" style="background:var(--green-700);height:${(d.qty/maxVal*100)}%" title="${d.qty} quintals"></div>
+        <div class="bar" style="background:var(--green-200);height:${(d.farmers/maxVal*100)}%" title="${d.farmers} farmers"></div>
+      </div>
+    `).join('');
+  }
+});
+</script>
+<script>
+(function(){
+  var btn=document.getElementById('dmToggle');
+  if(!btn) return;
+  var apply=function(t){
+    document.documentElement.setAttribute('data-theme',t);
+    btn.textContent=t==='dark'?'☀️':'🌙';
+    localStorage.setItem('sankalp_theme',t);
+  };
+  apply(localStorage.getItem('sankalp_theme')||'light');
+  btn.addEventListener('click',function(){
+    apply(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
+  });
+})();
+</script>
+</body>
+</html>

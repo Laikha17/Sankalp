@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Sankalp – Farmer & Procurement Portal</title>
+  <meta name="description" content="Sankalp connects farmers with procurement centers. Book slots online, check real-time queue status and track your produce procurement." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Dark Mode Overrides */
+    [data-theme="dark"] body { background: #0f1a13 !important; color: #e8f5ee !important; }
+    [data-theme="dark"] .sidebar { background: #111e15 !important; border-color: #2a4a32 !important; }
+    [data-theme="dark"] .nav-item { color: #86a891 !important; }
+    [data-theme="dark"] .nav-item:hover, [data-theme="dark"] .nav-item.active { background: #1a2e1f !important; color: #52a87a !important; }
+    [data-theme="dark"] .main { background: #0f1a13 !important; }
+    [data-theme="dark"] .topbar { background: #111e15 !important; border-color: #2a4a32 !important; }
+    [data-theme="dark"] .card { background: #1a2e1f !important; border-color: #2a4a32 !important; }
+    [data-theme="dark"] .stat-card { background: #1a2e1f !important; border-color: #2a4a32 !important; }
+    [data-theme="dark"] .page-footer { background: #111e15 !important; border-color: #2a4a32 !important; color: #6b8a73 !important; }
+    [data-theme="dark"] .live-token-banner { background: #142b1b !important; border-color: #2a4a32 !important; }
+    [data-theme="dark"] .auth-tools-card { background: #132218 !important; border-color: #2a4a32 !important; }
+    
+    .dm-toggle {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: #e8f5ee; border: 1.5px solid #c8e6d4;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 16px; transition: all .2s; flex-shrink: 0;
+    }
+    [data-theme="dark"] .dm-toggle { background: #1a2e1f; border-color: #2a4a32; }
+
+    /* Live Token Banner for Quick Glance */
+    .live-token-banner {
+      background: linear-gradient(135deg, #e8f5ee 0%, #f4faf6 100%);
+      border: 1.5px solid var(--green-300);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .token-badge-pulse {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #10b981;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 12px;
+      animation: pulse 2s infinite;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ── Backdrop for Mobile Drawer ── -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <div class="layout">
+
+    <!-- ── Sidebar (Desktop Fixed / Phone Slide-out Drawer) ── -->
+    <aside class="sidebar" id="sidebarDrawer">
+      <div class="sidebar-logo">
+        <a href="index.html" class="logo-mark flex items-center" style="gap:10px;text-decoration:none">
+          <img src="images/logo.jpg" alt="Sankalp Logo" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 36 36\' fill=\'none\'><circle cx=\'18\' cy=\'18\' r=\'18\' fill=\'%23e8f5ee\'/><path d=\'M18 28c0 0-8-5-8-12a8 8 0 0116 0c0 7-8 12-8 12z\' fill=\'%231a5c3a\'/><path d=\'M18 16c0 0-4-2.5-4-6a4 4 0 018 0c0 3.5-4 6-4 6z\' fill=\'%2352a87a\'/></svg>'">
+          <div class="logo-text"><strong>Sankalp</strong><span>Farm to Fair Markets</span></div>
+        </a>
+        <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close menu">✕</button>
+      </div>
+
+      <!-- Quick Role Toggle inside Drawer -->
+      <div style="padding:12px 16px 4px 16px;">
+        <div style="font-size:11px;font-weight:700;color:var(--text-light);text-transform:uppercase;margin-bottom:6px">Active View</div>
+        <div class="portal-switcher" style="width:100%;display:flex">
+          <a href="index.html" class="portal-switch-btn active" style="flex:1;justify-content:center">👨‍🌾 Farmer</a>
+          <a href="authority/dashboard.html" class="portal-switch-btn" style="flex:1;justify-content:center">🏛️ Authority</a>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="index.html" class="nav-item active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          Home
+        </a>
+        <a href="farmer/book-slot.html" class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          Book Slot
+        </a>
+        <a href="farmer/my-turn.html" class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+          My Turn (Queue)
+        </a>
+        <a href="farmer/procurement-status.html" class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+          Procurement Status
+        </a>
+        <div class="nav-divider"></div>
+        <a href="farmer/my-profile.html" class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          My Profile
+        </a>
+        <a href="farmer/settings.html" class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3" />
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+          </svg>
+          Settings
+        </a>
+        <a href="farmer/help-support.html" class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+          </svg>
+          Help &amp; Support
+        </a>
+        <div class="nav-divider"></div>
+        <a href="authority/dashboard.html" class="nav-item" style="color:var(--green-700)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/>
+          </svg>
+          Authority Portal →
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div style="font-size:24px;margin-bottom:6px">🌿</div>
+        <div class="sidebar-tagline"><span>Empowering Farmers<br>Enriching India</span></div>
+      </div>
+    </aside>
+
+    <!-- ── Main Area ── -->
+    <main class="main">
+      <!-- ── Responsive Topbar ── -->
+      <div class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open navigation menu">☰</button>
+          <!-- Portal Switcher Pill on Desktop and Tablet -->
+          <div class="portal-switcher">
+            <a href="index.html" class="portal-switch-btn active">👨‍🌾 Farmer</a>
+            <a href="authority/dashboard.html" class="portal-switch-btn">🏛️ Authority</a>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <button class="dm-toggle" id="dmToggle" title="Toggle Dark Mode">🌙</button>
+          
+          <button class="notif-btn" data-notif-btn title="Notifications">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+            <div class="notif-dot"></div>
+          </button>
+
+          <a href="farmer/my-profile.html" class="user-pill" style="text-decoration:none">
+            <div class="user-avatar" style="font-size:18px">👨‍🌾</div>
+            <div>
+              <div class="user-name">Mallaiah Goud</div>
+              <div class="user-role">Nalgonda</div>
+            </div>
+            <span style="font-size:12px;color:var(--text-muted)">▾</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Notification Overlay -->
+      <div class="notif-overlay" id="notifOverlay">
+        <div class="notif-panel">
+          <div class="notif-header">
+            <h3>🔔 Notifications</h3>
+            <button class="notif-close">✕</button>
+          </div>
+          <div class="notif-list"></div>
+        </div>
+      </div>
+
+      <!-- ── Page Content ── -->
+      <div class="page-content">
+
+        <!-- Welcome Banner -->
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+          <div>
+            <h1 style="font-size:24px;font-weight:800;line-height:1.2">Welcome, <span style="color:var(--green-800)">Mallaiah Goud!</span></h1>
+            <p style="color:var(--text-light);font-size:13px;margin-top:4px">Procurement &amp; Slot Management made easy on your phone.</p>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <a href="farmer/settings.html" class="settings-btn" style="padding:6px 12px;font-size:13px">
+              ⚙️ Settings
+            </a>
+            <div class="lang-selector" style="padding:4px 8px;font-size:13px">🌐
+              <select style="font-size:13px">
+                <option value="en">English</option>
+                <option value="te">తెలుగు</option>
+                <option value="hi">हिन्दी</option>
+                <option value="kn">ಕನ್ನಡ</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Live Token Queue Alert Banner ── -->
+        <div class="live-token-banner">
+          <div style="display:flex;align-items:center;gap:14px">
+            <div style="width:48px;height:48px;border-radius:12px;background:var(--amber-500);color:white;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;flex-shrink:0">
+              #27
+            </div>
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+                <span class="token-badge-pulse">● LIVE QUEUE</span>
+                <strong style="font-size:14px;color:var(--text-dark)">Your Token is #27</strong>
+              </div>
+              <p style="font-size:13px;color:var(--text-mid);margin:0">
+                Current Token: <strong style="color:var(--green-800)">#24</strong> &nbsp;|&nbsp; Approx wait: <strong>~15 mins</strong>
+              </p>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <a href="farmer/my-turn.html" class="btn btn-primary btn-sm" style="box-shadow:none">
+              View Turn Live →
+            </a>
+          </div>
+        </div>
+
+        <!-- ── Farmer Info Card (Fully Responsive for Phone) ── -->
+        <div class="card card-pad farmer-hero-grid">
+          <!-- Left: Identity -->
+          <div style="display:flex;align-items:center;gap:16px;padding-right:20px;border-right:1px solid var(--border)">
+            <div style="width:54px;height:54px;border-radius:50%;background:var(--green-100);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">
+              👨‍🌾
+            </div>
+            <div>
+              <div class="badge badge-green" style="margin-bottom:4px">✅ Active Farmer</div>
+              <div style="font-size:18px;font-weight:800">Mallaiah Goud</div>
+              <div style="font-size:13px;color:var(--text-light);margin-top:2px">Nalgonda, Telangana &nbsp;|&nbsp; 📱 9876543210</div>
+            </div>
+          </div>
+          <!-- Middle: Produce -->
+          <div style="padding:0 20px;display:flex;align-items:center;gap:12px;border-right:1px solid var(--border)">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--green-100);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">
+              🌿
+            </div>
+            <div>
+              <div style="font-size:11px;color:var(--text-light);font-weight:600;text-transform:uppercase">Produce Supplied</div>
+              <div style="font-size:20px;font-weight:800">12,450 kg</div>
+            </div>
+          </div>
+          <!-- Right: Visits -->
+          <div style="padding:0 20px;display:flex;align-items:center;gap:12px">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--green-100);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">
+              🏛️
+            </div>
+            <div>
+              <div style="font-size:11px;color:var(--text-light);font-weight:600;text-transform:uppercase">Center Visits</div>
+              <div style="font-size:20px;font-weight:800">18 Visits</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Key Services (Tap-Friendly Big Cards for Mobile) ── -->
+        <h2 style="font-size:18px;font-weight:800;margin-bottom:14px">Key Farmer Services</h2>
+        <div class="grid-3" style="margin-bottom:24px">
+          <!-- Book Slot -->
+          <a href="farmer/book-slot.html" class="card card-pad" style="text-decoration:none;transition:all .2s;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between">
+            <div>
+              <div style="width:50px;height:50px;border-radius:12px;background:var(--green-50);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px">
+                📅
+              </div>
+              <h3 style="font-size:17px;font-weight:800;margin-bottom:6px">Book Slot</h3>
+              <p style="font-size:13px;color:var(--text-light);margin-bottom:16px">Choose date, center, and time slot for seamless grain delivery.</p>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:12px;font-weight:700;color:var(--green-800)">Select Time Slot</span>
+              <div style="width:32px;height:32px;border-radius:50%;background:var(--green-800);display:flex;align-items:center;justify-content:center;color:white;font-size:14px">
+                →
+              </div>
+            </div>
+          </a>
+
+          <!-- My Turn -->
+          <a href="farmer/my-turn.html" class="card card-pad" style="text-decoration:none;background:#fffbeb;border-color:#fde68a;transition:all .2s;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between">
+            <div>
+              <div style="width:50px;height:50px;border-radius:12px;background:#fef3c7;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px">
+                🕐
+              </div>
+              <h3 style="font-size:17px;font-weight:800;margin-bottom:6px">My Turn</h3>
+              <p style="font-size:13px;color:var(--text-light);margin-bottom:16px">Live token tracker with real-time updates and notifications.</p>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:12px;font-weight:700;color:#92400e">Live Queue (#27)</span>
+              <div style="width:32px;height:32px;border-radius:50%;background:var(--amber-500);display:flex;align-items:center;justify-content:center;color:white;font-size:14px">
+                →
+              </div>
+            </div>
+          </a>
+
+          <!-- Procurement Status -->
+          <a href="farmer/procurement-status.html" class="card card-pad" style="text-decoration:none;background:#eff6ff;border-color:#bfdbfe;transition:all .2s;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between">
+            <div>
+              <div style="width:50px;height:50px;border-radius:12px;background:#dbeafe;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px">
+                📋
+              </div>
+              <h3 style="font-size:17px;font-weight:800;margin-bottom:6px">Procurement Status</h3>
+              <p style="font-size:13px;color:var(--text-light);margin-bottom:16px">Track produce verification, weighbridge slips, and bank payments.</p>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:12px;font-weight:700;color:#1e40af">View Receipts &amp; Pay</span>
+              <div style="width:32px;height:32px;border-radius:50%;background:var(--blue-500);display:flex;align-items:center;justify-content:center;color:white;font-size:14px">
+                →
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- ── Direct Authority Portal Shortcuts (No Login Needed) ── -->
+        <div class="card card-pad auth-tools-card" style="margin-bottom:24px;border:1.5px solid var(--green-200)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <div>
+              <h3 style="font-size:16px;font-weight:800;color:var(--green-900);display:flex;align-items:center;gap:6px">
+                🏛️ Authority Portal Tools (Direct Access)
+              </h3>
+              <p style="font-size:12px;color:var(--text-light);margin-top:2px">Manage procurement, centers, and registrations directly.</p>
+            </div>
+            <a href="authority/dashboard.html" class="btn btn-outline btn-sm" style="font-size:12px">
+              Open Full Authority Dashboard →
+            </a>
+          </div>
+
+          <div class="stat-cards stat-cards-4">
+            <a href="authority/register-farmer.html" class="stat-card" style="text-decoration:none;transition:transform .15s">
+              <div class="stat-icon stat-icon-green">👨‍🌾</div>
+              <div class="stat-value" style="font-size:16px">Register Farmer</div>
+              <div class="stat-label">Add farmer &amp; land info</div>
+            </a>
+            <a href="authority/slot-management.html" class="stat-card" style="text-decoration:none;transition:transform .15s">
+              <div class="stat-icon stat-icon-blue">📅</div>
+              <div class="stat-value" style="font-size:16px">Manage Slots</div>
+              <div class="stat-label">Capacities &amp; timings</div>
+            </a>
+            <a href="authority/farmer-bookings.html" class="stat-card" style="text-decoration:none;transition:transform .15s">
+              <div class="stat-icon stat-icon-amber">📋</div>
+              <div class="stat-value" style="font-size:16px">Bookings List</div>
+              <div class="stat-label">Today's appointments</div>
+            </a>
+            <a href="authority/reports-analytics.html" class="stat-card" style="text-decoration:none;transition:transform .15s">
+              <div class="stat-icon stat-icon-purple">📊</div>
+              <div class="stat-value" style="font-size:16px">Reports</div>
+              <div class="stat-label">Procurement analytics</div>
+            </a>
+          </div>
+        </div>
+
+        <!-- ── Quick Support / Toll-Free Card ── -->
+        <div class="card card-pad" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--green-25);border-color:var(--green-200)">
+          <div style="display:flex;align-items:center;gap:14px">
+            <div style="width:48px;height:48px;border-radius:50%;background:var(--green-100);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">
+              📞
+            </div>
+            <div>
+              <div style="font-size:15px;font-weight:800;color:var(--green-900)">Mandal Toll-Free Helpline: 1800-425-3456</div>
+              <div style="font-size:12px;color:var(--text-light);margin-top:2px">Free assistance in Telugu, Hindi, English, Kannada &amp; Tamil</div>
+            </div>
+          </div>
+          <a href="tel:18004253456" class="btn btn-primary btn-sm" style="white-space:nowrap">
+            📞 Call Support
+          </a>
+        </div>
+
+      </div>
+
+      <!-- ── Footer ── -->
+      <footer class="page-footer">
+        <div>© 2026 Sankalp • Direct Agricultural Procurement Platform</div>
+        <div class="brand-right">🌾 Empowering Indian Agriculture</div>
+      </footer>
+    </main>
+
+    <!-- ── Mobile Bottom Navigation Bar (Phone Native Experience) ── -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <a href="index.html" class="mobile-nav-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+        <span>Home</span>
+      </a>
+
+      <a href="farmer/book-slot.html" class="mobile-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+        <span>Book Slot</span>
+      </a>
+
+      <a href="farmer/my-turn.html" class="mobile-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="12 6 12 12 16 14" />
+        </svg>
+        <span>My Turn</span>
+      </a>
+
+      <a href="farmer/procurement-status.html" class="mobile-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+          <line x1="16" y1="13" x2="8" y2="13" />
+        </svg>
+        <span>Status</span>
+      </a>
+
+      <a href="#menu" class="mobile-nav-item" data-open-drawer>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+        <span>Menu</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    // Dark mode toggle
+    (function(){
+      var btn = document.getElementById('dmToggle');
+      if (!btn) return;
+      var applyTheme = function(t){
+        document.documentElement.setAttribute('data-theme', t);
+        btn.textContent = t === 'dark' ? '☀️' : '🌙';
+        localStorage.setItem('sankalp_theme', t);
+      };
+      applyTheme(localStorage.getItem('sankalp_theme') || 'light');
+      btn.addEventListener('click', function(){
+        applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Procurement Status – Sankalp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    [data-theme="dark"] body{background:#0f1a13!important;color:#e8f5ee!important}
+    [data-theme="dark"] .sidebar{background:#111e15!important;border-color:#2a4a32!important}
+    [data-theme="dark"] .nav-item{color:#86a891!important}
+    [data-theme="dark"] .nav-item:hover,[data-theme="dark"] .nav-item.active{background:#1a2e1f!important;color:#52a87a!important}
+    [data-theme="dark"] .main{background:#0f1a13!important}
+    [data-theme="dark"] .topbar{background:#111e15!important;border-color:#2a4a32!important}
+    [data-theme="dark"] .card{background:#1a2e1f!important;border-color:#2a4a32!important}
+    [data-theme="dark"] .page-footer{background:#111e15!important;color:#6b8a73!important}
+    .dm-toggle{width:32px;height:32px;border-radius:50%;background:#e8f5ee;border:1.5px solid #c8e6d4;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .2s;flex-shrink:0}
+    [data-theme="dark"] .dm-toggle{background:#1a2e1f;border-color:#2a4a32}
+
+    /* Process steps */
+    .proc-step{display:flex;gap:20px;padding:20px;border:2px solid var(--border);border-radius:14px;margin-bottom:14px;transition:all .3s;background:#fff;position:relative;overflow:hidden}
+    .proc-step::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--border);transition:background .3s}
+    .proc-step.done{border-color:#c8e6d4;background:#f4fdf7}
+    .proc-step.done::before{background:#1a5c3a}
+    .proc-step.active{border-color:#1a5c3a;background:#f2faf5;box-shadow:0 4px 16px rgba(26,92,58,.1)}
+    .proc-step.active::before{background:#1a5c3a}
+    .proc-step.pending{opacity:.55}
+    .step-num{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;border:2px solid var(--border);background:#f9fafb;transition:all .3s}
+    .proc-step.done .step-num{background:#1a5c3a;border-color:#1a5c3a;color:white}
+    .proc-step.active .step-num{background:#e8f5ee;border-color:#1a5c3a;color:#1a5c3a;box-shadow:0 0 0 4px rgba(26,92,58,.15)}
+    .proc-step.pending .step-num{background:#f3f4f6;border-color:#d1d5db;color:#9ca3af}
+    .step-title{font-size:15px;font-weight:700;color:var(--text-dark)}
+    .proc-step.pending .step-title{color:#9ca3af}
+    .step-desc{font-size:13px;color:var(--text-light);margin-top:3px}
+    .step-ts{font-size:11px;color:var(--text-muted);margin-top:6px;font-weight:600}
+    .step-action{margin-top:12px}
+    .mark-btn{background:#1a5c3a;color:white;border:none;border-radius:8px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
+    .mark-btn:hover{background:#1f6e46;transform:translateY(-1px)}
+
+    /* Payment section */
+    .payment-card{background:linear-gradient(135deg,#1a5c3a,#2d7a4f);border-radius:16px;padding:28px;color:white;margin-bottom:20px;display:none}
+    .payment-amount{font-size:40px;font-weight:900;line-height:1}
+    .pay-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.15)}
+    .pay-row:last-child{border:none}
+
+    /* Summary bar */
+    .summary-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px}
+    .sum-item{padding:16px;text-align:center;border-right:1px solid var(--border)}
+    .sum-item:last-child{border:none}
+    .sum-val{font-size:20px;font-weight:800;color:#1a5c3a}
+    .sum-lbl{font-size:11px;color:var(--text-light);margin-top:2px;font-weight:600;text-transform:uppercase}
+  </style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="sidebar-logo"><a href="../index.html" class="logo-mark" style="gap:10px;text-decoration:none;display:flex;align-items:center"><img src="../images/logo.jpg" alt="Sankalp" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #c8e6d4;"><div class="logo-text"><strong>Sankalp</strong><span>From Farm to Fair Markets</span></div></a>
+    <button class="sidebar-close-btn" aria-label="Close menu">✕</button></div>
+  <nav class="sidebar-nav">
+    <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</a>
+    <a href="book-slot.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Book Slot</a>
+    <a href="my-turn.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>My Turn</a>
+    <a href="procurement-status.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Procurement Status</a>
+    <div class="nav-divider"></div>
+    <a href="my-profile.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>My Profile</a>
+    <a href="settings.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg>Settings</a>
+    <a href="help-support.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg>Help &amp; Support</a>
+    <a href="../index.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Home Portal</a>
+  </nav>
+  <div class="sidebar-footer"><div style="font-size:28px;margin-bottom:8px">🌿</div><div class="sidebar-tagline">Supporting Farmers<br>Better Tomorrows</div></div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div><h1 style="font-size:20px;font-weight:800">📋 Procurement Status</h1><p style="font-size:13px;color:var(--text-light)">Track your produce from arrival to payment</p></div>
+    <div class="topbar-right" style="gap:10px">
+      <button class="dm-toggle" id="dmToggle">🌙</button>
+      <div class="user-pill"><div class="user-avatar" style="font-size:18px">👨‍🌾</div><div class="user-name">Mallaiah Goud</div><span>▾</span></div>
+    </div>
+  </div>
+
+  <div class="page-content">
+
+    <!-- No booking notice -->
+    <div id="noBookingMsg" style="display:none" class="card card-pad" style="text-align:center;padding:48px">
+      <div style="font-size:48px;margin-bottom:16px">📋</div>
+      <h3 style="font-size:18px;font-weight:700;margin-bottom:8px">No Active Procurement</h3>
+      <p style="color:var(--text-light);margin-bottom:20px">Book a slot first, then complete your visit to see procurement status.</p>
+      <a href="book-slot.html" class="btn btn-primary">Book a Slot →</a>
+    </div>
+
+    <div id="procContent">
+      <!-- Farmer + booking summary -->
+      <div class="summary-bar" style="background:#fff">
+        <div class="sum-item"><div class="sum-val">👨‍🌾</div><div class="sum-lbl">Mallaiah Goud</div></div>
+        <div class="sum-item"><div class="sum-val" id="sumDate">12 Sep</div><div class="sum-lbl">Date</div></div>
+        <div class="sum-item"><div class="sum-val">#T-28</div><div class="sum-lbl">Token</div></div>
+        <div class="sum-item"><div class="sum-val" id="overallBadge">🟡</div><div class="sum-lbl">Status</div></div>
+      </div>
+
+      <!-- Payment card (appears when payment done) -->
+      <div class="payment-card" id="paymentCard">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+          <div><div style="font-size:12px;opacity:.7;text-transform:uppercase;letter-spacing:1px">Total Payment Received</div><div class="payment-amount">₹48,300</div></div>
+          <div style="font-size:40px">💰</div>
+        </div>
+        <div class="pay-row"><span style="opacity:.75">Quantity Procured</span><strong>2,100 kg</strong></div>
+        <div class="pay-row"><span style="opacity:.75">MSP Rate</span><strong>₹2,300 / quintal</strong></div>
+        <div class="pay-row"><span style="opacity:.75">Payment Method</span><strong>Direct Bank Transfer</strong></div>
+        <div class="pay-row"><span style="opacity:.75">UTR Number</span><strong>UTR24091234567</strong></div>
+        <div class="pay-row"><span style="opacity:.75">Payment Date</span><strong>14 Sep 2026</strong></div>
+      </div>
+
+      <!-- Process steps -->
+      <div class="card card-pad">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+          <h3 style="font-size:16px;font-weight:700">📍 Procurement Process</h3>
+          <span class="badge badge-amber" id="mainStatusBadge">⏳ In Progress</span>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="proc-step done" id="ps1">
+          <div class="step-num">✓</div>
+          <div style="flex:1">
+            <div class="step-title">✅ Slot Booked &amp; Confirmed</div>
+            <div class="step-desc">Your procurement slot has been confirmed with Token #T-28</div>
+            <div class="step-ts" id="ts1">Today, 10:00 AM</div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="proc-step active" id="ps2">
+          <div class="step-num">🚗</div>
+          <div style="flex:1">
+            <div class="step-title">Arrived at Procurement Center</div>
+            <div class="step-desc">Mark your arrival when you reach the center</div>
+            <div class="step-ts" id="ts2">Pending</div>
+            <div class="step-action">
+              <button class="mark-btn" id="btn2" onclick="markDone(2)">✅ Mark Arrival</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="proc-step pending" id="ps3">
+          <div class="step-num">⚖️</div>
+          <div style="flex:1">
+            <div class="step-title">Produce Weighed &amp; Quality Checked</div>
+            <div class="step-desc">Officer weighs produce and verifies quality as per MSP norms</div>
+            <div class="step-ts" id="ts3">Pending</div>
+            <div class="step-action" style="display:none" id="act3">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+                <div><label style="font-size:12px;font-weight:600;color:var(--text-light)">Quantity (kg)</label><input type="number" id="qty" value="2100" class="form-control" style="margin-top:4px"/></div>
+                <div><label style="font-size:12px;font-weight:600;color:var(--text-light)">Quality Grade</label><select class="form-control" style="margin-top:4px"><option>Grade A – Premium</option><option>Grade B – Standard</option></select></div>
+              </div>
+              <button class="mark-btn" id="btn3" onclick="markDone(3)">⚖️ Confirm Weighing</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="proc-step pending" id="ps4">
+          <div class="step-num">🏦</div>
+          <div style="flex:1">
+            <div class="step-title">Payment Initiated</div>
+            <div class="step-desc">Payment calculated and initiated to your bank account</div>
+            <div class="step-ts" id="ts4">Pending</div>
+            <div class="step-action" style="display:none" id="act4">
+              <div style="background:#f2faf5;border-radius:8px;padding:12px;margin-bottom:12px;font-size:13px">
+                <div style="display:flex;justify-content:space-between"><span>Quantity</span><strong id="dispQty">2,100 kg</strong></div>
+                <div style="display:flex;justify-content:space-between;margin-top:4px"><span>Rate (MSP)</span><strong>₹2,300/q</strong></div>
+                <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:16px;font-weight:800;color:#1a5c3a"><span>Total</span><strong id="dispTotal">₹48,300</strong></div>
+              </div>
+              <button class="mark-btn" id="btn4" onclick="markDone(4)">🏦 Initiate Payment</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="proc-step pending" id="ps5">
+          <div class="step-num">💰</div>
+          <div style="flex:1">
+            <div class="step-title">Payment Received ✅</div>
+            <div class="step-desc">Amount transferred to your registered bank account</div>
+            <div class="step-ts" id="ts5">Pending</div>
+            <div class="step-action" style="display:none" id="act5">
+              <button class="mark-btn" id="btn5" onclick="markDone(5)">💰 Confirm Payment Received</button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end card -->
+    </div>
+
+  </div>
+  <div class="page-footer"><span>© 2026 Sankalp. All rights reserved.</span><div class="brand-right">🌿 For Farmers | For a Stronger Tomorrow</div></div>
+</main>
+
+    <!-- ── Mobile Bottom Navigation Bar ── -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <a href="dashboard.html" class="mobile-nav-item ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
+        <span>Home</span>
+      </a>
+      <a href="book-slot.html" class="mobile-nav-item ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
+        <span>Book Slot</span>
+      </a>
+      <a href="my-turn.html" class="mobile-nav-item ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+        <span>My Turn</span>
+      </a>
+      <a href="procurement-status.html" class="mobile-nav-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg>
+        <span>Status</span>
+      </a>
+      <a href="#menu" class="mobile-nav-item" data-open-drawer>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
+        <span>Menu</span>
+      </a>
+    </nav>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+const booking = JSON.parse(localStorage.getItem('sankalp_booking') || 'null');
+if (!booking) {
+  document.getElementById('noBookingMsg').style.display = 'block';
+  document.getElementById('procContent').style.display = 'none';
+} else {
+  document.getElementById('noBookingMsg').style.display = 'none';
+  document.getElementById('procContent').style.display = 'block';
+  if (booking.date) document.getElementById('sumDate').textContent = booking.date.split(',')[1] || booking.date;
+  if (booking.token) document.getElementById('ps1').querySelector('.step-desc').textContent = 'Your procurement slot confirmed with token ' + booking.token;
+}
+
+let procStage = 1;
+const now = new Date();
+
+function getTime() {
+  return now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true}) + ', Today';
+}
+
+function markDone(n) {
+  const step = document.getElementById('ps' + n);
+  const act = document.getElementById('act' + n);
+  const btn = document.getElementById('btn' + n);
+  const ts = document.getElementById('ts' + n);
+
+  // Mark current as done
+  step.className = 'proc-step done';
+  step.querySelector('.step-num').textContent = '✓';
+  ts.textContent = getTime();
+  if (act) act.style.display = 'none';
+
+  // Calculate payment if weighing done
+  if (n === 3) {
+    const qty = parseInt(document.getElementById('qty').value) || 2100;
+    const total = Math.round((qty / 100) * 2300);
+    document.getElementById('dispQty').textContent = qty.toLocaleString() + ' kg';
+    document.getElementById('dispTotal').textContent = '₹' + total.toLocaleString();
+    procStage = 4;
+  } else {
+    procStage = n + 1;
+  }
+
+  // Activate next step
+  const next = document.getElementById('ps' + procStage);
+  if (next) {
+    next.className = 'proc-step active';
+    const nextAct = document.getElementById('act' + procStage);
+    if (nextAct) nextAct.style.display = 'block';
+  }
+
+  // If all done (step 5)
+  if (n === 5) {
+    document.getElementById('mainStatusBadge').textContent = '✅ Completed';
+    document.getElementById('mainStatusBadge').className = 'badge badge-green';
+    document.getElementById('overallBadge').textContent = '✅';
+    document.getElementById('paymentCard').style.display = 'block';
+    const bk = JSON.parse(localStorage.getItem('sankalp_booking') || '{}');
+    bk.procCompleted = true;
+    localStorage.setItem('sankalp_booking', JSON.stringify(bk));
+  }
+}
+
+// If turn already completed from My Turn page, show step 2 active
+const bk = JSON.parse(localStorage.getItem('sankalp_booking') || '{}');
+if (bk.turnCompleted) {
+  // Arrival step is now active
+  document.getElementById('ps2').className = 'proc-step active';
+  document.getElementById('act2').style.display = 'block';
+}
+
+// Dark mode
+const dmBtn = document.getElementById('dmToggle');
+const applyTheme = t => { document.documentElement.setAttribute('data-theme',t); dmBtn.textContent=t==='dark'?'☀️':'🌙'; localStorage.setItem('sankalp_theme',t); };
+applyTheme(localStorage.getItem('sankalp_theme')||'light');
+dmBtn.addEventListener('click', ()=>{ applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'); });
+</script>
+
+<script>
+// Show logged-in user name
+(function(){
+  var fu = JSON.parse(localStorage.getItem('sankalp_farmer_user')||'{}');
+  if(fu.name){
+    document.querySelectorAll('.user-name').forEach(function(el){el.textContent=fu.name});
+  }
+})();
+</script>
+</body>
+</html>

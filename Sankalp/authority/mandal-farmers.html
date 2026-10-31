@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Mandal-wise Farmers – Sankalp Authority</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    [data-theme="dark"] body{background:#0f1a13!important;color:#e8f5ee!important}
+    [data-theme="dark"] .sidebar{background:#111e15!important;border-color:#2a4a32!important}
+    [data-theme="dark"] .nav-item{color:#86a891!important}
+    [data-theme="dark"] .nav-item:hover,[data-theme="dark"] .nav-item.active{background:#1a2e1f!important;color:#52a87a!important}
+    [data-theme="dark"] .main{background:#0f1a13!important}
+    [data-theme="dark"] .topbar{background:#111e15!important;border-color:#2a4a32!important}
+    [data-theme="dark"] .card{background:#1a2e1f!important;border-color:#2a4a32!important}
+    [data-theme="dark"] th,[data-theme="dark"] td{color:#c8e6d4!important;border-color:#2a4a32!important}
+    [data-theme="dark"] .page-footer{background:#111e15!important;color:#6b8a73!important}
+    .dm-toggle{width:32px;height:32px;border-radius:50%;background:#e8f5ee;border:1.5px solid #c8e6d4;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .2s;flex-shrink:0}
+    [data-theme="dark"] .dm-toggle{background:#1a2e1f;border-color:#2a4a32}
+    .main{background:#f0f9f2!important}
+
+    /* Edit modal */
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;display:none;align-items:center;justify-content:center}
+    .modal-overlay.show{display:flex}
+    .modal-box{background:white;border-radius:16px;padding:28px;max-width:560px;width:95%;animation:modalIn .3s ease}
+    @keyframes modalIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+    .modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+    .modal-close{width:32px;height:32px;border-radius:50%;border:none;background:#f3f4f6;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center}
+    .action-btn{padding:6px 12px;border-radius:6px;border:none;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s}
+    .edit-btn{background:#e8f5ee;color:#1a5c3a}
+    .edit-btn:hover{background:#1a5c3a;color:white}
+    .del-btn{background:#fee2e2;color:#ef4444}
+    .del-btn:hover{background:#ef4444;color:white}
+    .view-btn{background:#dbeafe;color:#3b82f6}
+    .view-btn:hover{background:#3b82f6;color:white}
+  </style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="sidebar-logo"><a href="../index.html" class="logo-mark" style="gap:10px;text-decoration:none;display:flex;align-items:center"><img src="../images/logo.jpg" alt="Sankalp" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #c8e6d4;"><div class="logo-text"><strong>Sankalp</strong><span>From Farm to Fair Markets</span></div></a>
+    <button class="sidebar-close-btn" aria-label="Close menu">✕</button></div>
+  <nav class="sidebar-nav">
+    <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Dashboard</a>
+    <a href="register-farmer.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>Register Farmer</a>
+    <a href="mandal-farmers.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Mandal-wise Farmers</a>
+    <a href="slot-management.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>Slot Management</a>
+    <a href="farmer-bookings.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>Farmer Bookings</a>
+    <a href="#" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Procurement Management</a>
+    <a href="reports-analytics.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Reports &amp; Analytics</a>
+    <a href="center-management.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Center Management</a>
+    <div class="nav-divider"></div>
+    <a href="settings.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg>Settings</a>
+    <a href="help-support.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg>Help &amp; Support</a>
+    <a href="../index.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Home Portal</a>
+  </nav>
+  <div class="sidebar-footer"><div style="font-size:14px;font-weight:700;color:var(--green-800)">Better Farmers<br>Brighter Tomorrow</div></div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div><h1 style="font-size:20px;font-weight:800">👥 Mandal-wise Farmers</h1><p style="font-size:13px;color:var(--text-light)">View, search and manage all registered farmers</p></div>
+    <div class="topbar-right" style="gap:10px">
+      <button class="dm-toggle" id="dmToggle">🌙</button>
+      <div class="user-pill"><div class="user-avatar" style="font-size:18px">👨‍💼</div><div><div class="user-name" id="authUserName">R. Kumar</div><div class="user-role">Procurement Officer</div></div><span>▾</span></div>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <!-- Stats -->
+    <div class="stat-cards stat-cards-4" style="margin-bottom:20px">
+      <div class="stat-card"><div class="stat-icon stat-icon-green" style="font-size:22px">👥</div><div class="stat-value" id="statTotal">0</div><div class="stat-label">Total Farmers</div></div>
+      <div class="stat-card"><div class="stat-icon stat-icon-blue" style="font-size:22px">🏛️</div><div class="stat-value" id="statMandals">0</div><div class="stat-label">Mandals</div></div>
+      <div class="stat-card"><div class="stat-icon stat-icon-amber" style="font-size:22px">✅</div><div class="stat-value" id="statActive">0</div><div class="stat-label">Active</div></div>
+      <div class="stat-card"><div class="stat-icon stat-icon-purple" style="font-size:22px">🌾</div><div class="stat-value" id="statNew">0</div><div class="stat-label">Newly Registered</div></div>
+    </div>
+
+    <!-- Filters -->
+    <div class="card card-pad" style="margin-bottom:16px;display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap">
+      <div class="form-group" style="flex:1;min-width:160px">
+        <label class="form-label">Filter by Mandal</label>
+        <select class="form-control" id="filterMandal" onchange="renderTable()">
+          <option value="">All Mandals</option><option>Nalgonda</option><option>Munugode</option><option>Thungathurthy</option><option>Miryalaguda</option><option>Bhongir</option>
+        </select>
+      </div>
+      <div class="form-group" style="flex:1;min-width:160px">
+        <label class="form-label">Filter by Crop</label>
+        <select class="form-control" id="filterCrop" onchange="renderTable()">
+          <option value="">All Crops</option><option>Paddy</option><option>Rice</option><option>Wheat</option><option>Maize</option><option>Cotton</option><option>Groundnut</option>
+        </select>
+      </div>
+      <div class="form-group" style="flex:2;min-width:200px">
+        <label class="form-label">Search</label>
+        <input type="text" class="form-control" id="searchBox" placeholder="Search by name, phone, or village..." oninput="renderTable()"/>
+      </div>
+      <a href="register-farmer.html" class="btn btn-primary" style="height:fit-content">+ Register New Farmer</a>
+    </div>
+
+    <!-- Table -->
+    <div class="card card-pad">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+        <h3 style="font-size:16px;font-weight:700;color:var(--text-dark)">Farmer Directory</h3>
+        <span style="font-size:13px;color:var(--text-light)" id="tableCount">Showing 0 farmers</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Name</th><th>Aadhaar</th><th>Village</th><th>Mandal</th><th>Crop</th><th>Phone</th><th>Land</th><th>Status</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="farmerTableBody">
+          </tbody>
+        </table>
+      </div>
+      <div id="emptyMsg" style="text-align:center;padding:40px;display:none">
+        <div style="font-size:40px;margin-bottom:12px">📋</div>
+        <h3 style="font-size:16px;font-weight:700;color:var(--text-mid)">No Farmers Found</h3>
+        <p style="color:var(--text-light);margin-bottom:16px">Register farmers to see them here.</p>
+        <a href="register-farmer.html" class="btn btn-primary">+ Register Farmer</a>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer"><span>© 2026 Sankalp. All rights reserved.</span><div class="brand-right">🌿 For Farmers | For a Stronger Tomorrow</div></div>
+</main>
+
+    <!-- ── Mobile Bottom Navigation Bar ── -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <a href="dashboard.html" class="mobile-nav-item ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="register-farmer.html" class="mobile-nav-item ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/></svg>
+        <span>Register</span>
+      </a>
+      <a href="slot-management.html" class="mobile-nav-item ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span>Slots</span>
+      </a>
+      <a href="farmer-bookings.html" class="mobile-nav-item ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <span>Bookings</span>
+      </a>
+      <a href="#menu" class="mobile-nav-item" data-open-drawer>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <span>Menu</span>
+      </a>
+    </nav>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal-overlay" id="editModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 style="font-size:18px;font-weight:800">✏️ Edit Farmer Details</h3>
+      <button class="modal-close" onclick="closeEdit()">✕</button>
+    </div>
+    <input type="hidden" id="editId"/>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div class="form-group"><label class="form-label">Full Name</label><input type="text" id="eName" class="form-control"/></div>
+      <div class="form-group"><label class="form-label">Phone</label><input type="tel" id="ePhone" class="form-control"/></div>
+      <div class="form-group"><label class="form-label">Village</label><input type="text" id="eVillage" class="form-control"/></div>
+      <div class="form-group"><label class="form-label">Mandal</label>
+        <select id="eMandal" class="form-control"><option>Nalgonda</option><option>Munugode</option><option>Thungathurthy</option><option>Miryalaguda</option><option>Bhongir</option></select>
+      </div>
+      <div class="form-group"><label class="form-label">Primary Crop</label>
+        <select id="eCrop" class="form-control"><option>Paddy</option><option>Rice</option><option>Wheat</option><option>Maize</option><option>Cotton</option><option>Groundnut</option></select>
+      </div>
+      <div class="form-group"><label class="form-label">Land Area (ac)</label><input type="number" id="eLand" class="form-control" step="0.1"/></div>
+      <div class="form-group"><label class="form-label">Status</label>
+        <select id="eStatus" class="form-control"><option>Active</option><option>Pending</option><option>Inactive</option></select>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:20px">
+      <button class="btn btn-outline" onclick="closeEdit()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveEdit()">💾 Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+// Default farmers (pre-loaded)
+const defaultFarmers = [
+  {id:1,name:'Ramesh Naik',aadhaar:'XXXX-3456',village:'Chityala',mandal:'Nalgonda',crop:'Paddy',phone:'9876543210',land:'4.5',status:'Active',registeredOn:'01/09/2026',mode:'online'},
+  {id:2,name:'Lakshmi Bai',aadhaar:'XXXX-7890',village:'Dameracherla',mandal:'Nalgonda',crop:'Rice',phone:'9123456780',land:'2.0',status:'Active',registeredOn:'02/09/2026',mode:'online'},
+  {id:3,name:'Srinivas Reddy',aadhaar:'XXXX-1122',village:'Piduguralla',mandal:'Munugode',crop:'Maize',phone:'9988776655',land:'6.2',status:'Active',registeredOn:'03/09/2026',mode:'online'},
+  {id:4,name:'Anjali Devi',aadhaar:'XXXX-3344',village:'Nandikonda',mandal:'Nalgonda',crop:'Cotton',phone:'9012345678',land:'3.5',status:'Pending',registeredOn:'04/09/2026',mode:'phone'},
+  {id:5,name:'Mahesh Kumar',aadhaar:'XXXX-5566',village:'Marriguda',mandal:'Thungathurthy',crop:'Paddy',phone:'9345678901',land:'8.0',status:'Active',registeredOn:'05/09/2026',mode:'online'},
+  {id:6,name:'Venkat Rao',aadhaar:'XXXX-7788',village:'Bhongir',mandal:'Bhongir',crop:'Wheat',phone:'9567890123',land:'5.1',status:'Active',registeredOn:'01/09/2026',mode:'online'},
+  {id:7,name:'Savitri',aadhaar:'XXXX-9900',village:'Miryalaguda',mandal:'Miryalaguda',crop:'Paddy',phone:'9789012345',land:'1.5',status:'Active',registeredOn:'02/09/2026',mode:'phone'},
+  {id:8,name:'Raju',aadhaar:'XXXX-2211',village:'Suryapet',mandal:'Nalgonda',crop:'Rice',phone:'9890123456',land:'3.0',status:'Inactive',registeredOn:'03/09/2026',mode:'online'},
+  {id:9,name:'Padmavathi',aadhaar:'XXXX-4433',village:'Huzurnagar',mandal:'Munugode',crop:'Maize',phone:'9912345678',land:'7.2',status:'Active',registeredOn:'04/09/2026',mode:'online'},
+  {id:10,name:'Narasimha',aadhaar:'XXXX-6655',village:'Bhuvanagiri',mandal:'Bhongir',crop:'Groundnut',phone:'9934567890',land:'4.8',status:'Active',registeredOn:'05/09/2026',mode:'online'},
+];
+
+function getAllFarmers() {
+  // Merge defaults + localStorage registered
+  const stored = JSON.parse(localStorage.getItem('sankalp_farmers') || '[]');
+  return [...defaultFarmers, ...stored];
+}
+
+function saveFarmers(list) {
+  // Only save non-default (those with id > 10 or from localStorage)
+  const custom = list.filter(f => f.id > 10);
+  localStorage.setItem('sankalp_farmers', JSON.stringify(custom));
+}
+
+let allFarmers = getAllFarmers();
+
+function renderTable() {
+  allFarmers = getAllFarmers();
+  const mandal = document.getElementById('filterMandal').value;
+  const crop = document.getElementById('filterCrop').value;
+  const search = document.getElementById('searchBox').value.toLowerCase();
+
+  let filtered = allFarmers;
+  if (mandal) filtered = filtered.filter(f => f.mandal === mandal);
+  if (crop) filtered = filtered.filter(f => f.crop === crop);
+  if (search) filtered = filtered.filter(f =>
+    (f.name||'').toLowerCase().includes(search) ||
+    (f.phone||'').includes(search) ||
+    (f.village||'').toLowerCase().includes(search)
+  );
+
+  const tbody = document.getElementById('farmerTableBody');
+  const empty = document.getElementById('emptyMsg');
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+  } else {
+    empty.style.display = 'none';
+    tbody.innerHTML = filtered.map(f => `
+      <tr>
+        <td><strong>${f.name}</strong></td>
+        <td>${f.aadhaar || '—'}</td>
+        <td>${f.village}</td>
+        <td>${f.mandal}</td>
+        <td>${f.crop}</td>
+        <td>${f.phone}</td>
+        <td>${f.land || '—'} ac</td>
+        <td><span class="badge badge-${f.status==='Active'?'green':f.status==='Pending'?'amber':'red'}">${f.status}</span></td>
+        <td style="display:flex;gap:6px">
+          <button class="action-btn view-btn" onclick="viewFarmer(${f.id})">👁️</button>
+          <button class="action-btn edit-btn" onclick="editFarmer(${f.id})">✏️</button>
+          <button class="action-btn del-btn" onclick="deleteFarmer(${f.id})">🗑️</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  document.getElementById('tableCount').textContent = 'Showing ' + filtered.length + ' of ' + allFarmers.length + ' farmers';
+
+  // Stats
+  const mandals = new Set(allFarmers.map(f => f.mandal));
+  document.getElementById('statTotal').textContent = allFarmers.length;
+  document.getElementById('statMandals').textContent = mandals.size;
+  document.getElementById('statActive').textContent = allFarmers.filter(f => f.status === 'Active').length;
+  document.getElementById('statNew').textContent = JSON.parse(localStorage.getItem('sankalp_farmers') || '[]').length;
+}
+
+function viewFarmer(id) {
+  window.location.href = 'farmer-detail.html?id=' + id;
+}
+
+function editFarmer(id) {
+  const f = allFarmers.find(x => x.id === id);
+  if (!f) return;
+  document.getElementById('editId').value = id;
+  document.getElementById('eName').value = f.name;
+  document.getElementById('ePhone').value = f.phone;
+  document.getElementById('eVillage').value = f.village;
+  document.getElementById('eMandal').value = f.mandal;
+  document.getElementById('eCrop').value = f.crop;
+  document.getElementById('eLand').value = f.land || '';
+  document.getElementById('eStatus').value = f.status || 'Active';
+  document.getElementById('editModal').classList.add('show');
+}
+
+function closeEdit() {
+  document.getElementById('editModal').classList.remove('show');
+}
+
+function saveEdit() {
+  const id = parseInt(document.getElementById('editId').value);
+  const idx = allFarmers.findIndex(x => x.id === id);
+  if (idx === -1) return;
+
+  allFarmers[idx].name = document.getElementById('eName').value;
+  allFarmers[idx].phone = document.getElementById('ePhone').value;
+  allFarmers[idx].village = document.getElementById('eVillage').value;
+  allFarmers[idx].mandal = document.getElementById('eMandal').value;
+  allFarmers[idx].crop = document.getElementById('eCrop').value;
+  allFarmers[idx].land = document.getElementById('eLand').value;
+  allFarmers[idx].status = document.getElementById('eStatus').value;
+
+  // If default farmer (id<=10), move to localStorage as edited
+  if (id <= 10) {
+    const stored = JSON.parse(localStorage.getItem('sankalp_farmers') || '[]');
+    const existing = stored.findIndex(x => x.id === id);
+    if (existing >= 0) stored[existing] = allFarmers[idx];
+    else stored.push(allFarmers[idx]);
+    localStorage.setItem('sankalp_farmers', JSON.stringify(stored));
+    // Remove from defaults next render by updating defaultFarmers
+    defaultFarmers[defaultFarmers.findIndex(x=>x.id===id)] = allFarmers[idx];
+  } else {
+    saveFarmers(allFarmers);
+  }
+
+  closeEdit();
+  renderTable();
+  alert('✅ Farmer details updated successfully!');
+}
+
+function deleteFarmer(id) {
+  if (!confirm('Are you sure you want to remove this farmer?')) return;
+  if (id <= 10) {
+    const dIdx = defaultFarmers.findIndex(x => x.id === id);
+    if (dIdx >= 0) defaultFarmers.splice(dIdx, 1);
+  }
+  let stored = JSON.parse(localStorage.getItem('sankalp_farmers') || '[]');
+  stored = stored.filter(x => x.id !== id);
+  localStorage.setItem('sankalp_farmers', JSON.stringify(stored));
+  renderTable();
+}
+
+// Auth user name
+const authUser = JSON.parse(localStorage.getItem('sankalp_auth_user') || '{}');
+if (authUser.name) document.getElementById('authUserName').textContent = authUser.name;
+
+renderTable();
+
+// Dark mode
+const dmBtn = document.getElementById('dmToggle');
+const applyTheme = t => { document.documentElement.setAttribute('data-theme',t); dmBtn.textContent=t==='dark'?'☀️':'🌙'; localStorage.setItem('sankalp_theme',t); };
+applyTheme(localStorage.getItem('sankalp_theme')||'light');
+dmBtn.addEventListener('click', ()=>{ applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'); });
+</script>
+</body>
+</html>

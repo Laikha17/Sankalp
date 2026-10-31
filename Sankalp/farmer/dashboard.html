@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farmer Dashboard – Sankalp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    [data-theme="dark"] body { background:#0f1a13!important; color:#e8f5ee!important; }
+    [data-theme="dark"] .sidebar { background:#111e15!important; border-color:#2a4a32!important; }
+    [data-theme="dark"] .nav-item { color:#86a891!important; }
+    [data-theme="dark"] .nav-item:hover,[data-theme="dark"] .nav-item.active { background:#1a2e1f!important; color:#52a87a!important; }
+    [data-theme="dark"] .main { background:#0f1a13!important; }
+    [data-theme="dark"] .topbar { background:#111e15!important; border-color:#2a4a32!important; }
+    [data-theme="dark"] .card { background:#1a2e1f!important; border-color:#2a4a32!important; }
+    [data-theme="dark"] .stat-card { background:#1a2e1f!important; border-color:#2a4a32!important; }
+    [data-theme="dark"] .page-footer { background:#111e15!important; border-color:#2a4a32!important; color:#6b8a73!important; }
+    .dm-toggle {
+      width:32px;height:32px;border-radius:50%;
+      background:#e8f5ee;border:1.5px solid #c8e6d4;
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;font-size:15px;transition:all .2s;flex-shrink:0;
+    }
+    [data-theme="dark"] .dm-toggle { background:#1a2e1f;border-color:#2a4a32; }
+  </style>
+</head>
+
+<body>
+  <div class="layout">
+
+    <!-- ── Sidebar ── -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <a href="../index.html" class="logo-mark flex items-center gap-8" style="gap:10px;text-decoration:none">
+          <img src="../images/logo.jpg" alt="Sankalp" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #c8e6d4;">
+          <div class="logo-text"><strong>Sankalp</strong><span>From Farm to Fair Markets</span></div>
+        </a>
+        <button class="sidebar-close-btn" aria-label="Close menu">✕</button>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          Home
+        </a>
+        <a href="book-slot.html" class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          Book Slot
+        </a>
+        <a href="my-turn.html" class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+          My Turn
+        </a>
+        <a href="procurement-status.html" class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+            <polyline points="10 9 9 9 8 9" />
+          </svg>
+          Procurement Status
+        </a>
+        <div class="nav-divider"></div>
+        <a href="my-profile.html" class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          My Profile
+        </a>
+        <a href="settings.html" class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3" />
+            <path
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+          </svg>
+          Settings
+        </a>
+        <a href="help-support.html" class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+            <path
+              d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+          </svg>
+          Help &amp; Support
+        </a>
+        <a href="../authority/dashboard.html" class="nav-item" style="color:var(--green-700)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+            <polyline points="16 17 21 12 16 7" />
+            <line x1="21" y1="12" x2="9" y2="12" />
+          </svg>
+          Authority Portal →
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <div style="font-size:28px;margin-bottom:8px">🌿</div>
+        <div class="sidebar-tagline"><span data-i18n="sidebar.tagline">Empowering Farmers<br>Enriching India</span></div>
+      </div>
+    </aside>
+
+    <!-- ── Main ── -->
+    <main class="main">
+      <!-- Topbar -->
+      <div class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn" aria-label="Open menu">☰</button>
+          <div class="portal-switcher">
+            <a href="dashboard.html" class="portal-switch-btn active">👨‍🌾 Farmer</a>
+            <a href="../authority/dashboard.html" class="portal-switch-btn">🏛️ Authority</a>
+          </div>
+        </div>
+        <div class="topbar-right" style="gap:10px"><button class="dm-toggle" id="dmToggle" title="Toggle Dark Mode">🌙</button>
+          <button class="notif-btn" data-notif-btn title="Notifications">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+            <div class="notif-dot"></div>
+          </button>
+          <div class="user-pill">
+            <div class="user-avatar" style="font-size:18px">👨‍🌾</div>
+            <div>
+              <div class="user-name">Mallaiah Goud</div>
+            </div>
+            <span>▾</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notification Overlay -->
+      <div class="notif-overlay" id="notifOverlay">
+        <div class="notif-panel">
+          <div class="notif-header">
+            <h3>🔔 Notifications</h3>
+            <button class="notif-close">✕</button>
+          </div>
+          <div class="notif-list"></div>
+        </div>
+      </div>
+
+      <!-- Page Content -->
+      <div class="page-content">
+        <!-- Welcome Header -->
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px">
+          <div>
+            <h1 style="font-size:28px;font-weight:800">Welcome, <span style="color:var(--green-800)">Mallaiah
+                Goud!</span></h1>
+            <p style="color:var(--text-light);margin-top:4px">Manage your procurement, all in one place.</p>
+          </div>
+          <div style="display:flex;gap:12px">
+            <a href="settings.html" class="settings-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3" />
+                <path
+                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+              </svg>
+              Settings
+            </a>
+            <div class="lang-selector">🌐
+              <select>
+                <option value="en">English</option>
+                <option value="te">తెలుగు</option>
+                <option value="hi">हिन्दी</option>
+                <option value="kn">ಕನ್ನಡ</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Farmer Info Card -->
+        <div class="card card-pad farmer-hero-grid"
+          style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:0;margin-bottom:28px;overflow:hidden">
+          <div style="display:flex;align-items:center;gap:20px;padding-right:24px;border-right:1px solid var(--border)">
+            <div
+              style="width:60px;height:60px;border-radius:50%;background:var(--green-100);display:flex;align-items:center;justify-content:center;font-size:28px">
+              👨‍🌾</div>
+            <div>
+              <div class="badge badge-green" style="margin-bottom:6px">✅ Active Farmer</div>
+              <div style="font-size:20px;font-weight:800">Mallaiah Goud</div>
+              <div style="font-size:14px;color:var(--text-light);margin-top:2px">Nalgonda, Telangana &nbsp;|&nbsp; 📱
+                9876543210</div>
+            </div>
+          </div>
+          <div style="padding:0 24px;display:flex;align-items:center;gap:14px;border-right:1px solid var(--border)">
+            <div
+              style="width:44px;height:44px;border-radius:50%;background:var(--green-100);display:flex;align-items:center;justify-content:center;font-size:20px">
+              🌿</div>
+            <div>
+              <div style="font-size:12px;color:var(--text-light);font-weight:500">Total Produce Supplied</div>
+              <div style="font-size:24px;font-weight:800">12,450 kg</div>
+            </div>
+          </div>
+          <div style="padding:0 24px;display:flex;align-items:center;gap:14px">
+            <div
+              style="width:44px;height:44px;border-radius:50%;background:var(--green-100);display:flex;align-items:center;justify-content:center;font-size:20px">
+              👥</div>
+            <div>
+              <div style="font-size:12px;color:var(--text-light);font-weight:500">Total Visits</div>
+              <div style="font-size:24px;font-weight:800">18</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Key Services -->
+        <h2 style="font-size:20px;font-weight:800;margin-bottom:16px">Key Services</h2>
+        <div class="grid-3" style="margin-bottom:28px">
+          <a href="book-slot.html" class="card card-pad" style="text-decoration:none;transition:all .2s;cursor:pointer"
+            onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='var(--shadow-md)'"
+            onmouseout="this.style.transform='';this.style.boxShadow=''">
+            <div
+              style="width:56px;height:56px;border-radius:12px;background:var(--green-50);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px">
+              📅</div>
+            <h3 style="font-size:18px;font-weight:800;margin-bottom:8px">Book Slot</h3>
+            <p style="font-size:13px;color:var(--text-light);margin-bottom:20px">Schedule a procurement slot at your
+              nearest center.</p>
+            <div
+              style="width:36px;height:36px;border-radius:50%;background:var(--green-800);display:flex;align-items:center;justify-content:center;color:white;font-size:16px">
+              →</div>
+          </a>
+          <a href="my-turn.html" class="card card-pad"
+            style="text-decoration:none;background:#fffbeb;border-color:#fde68a;transition:all .2s;cursor:pointer"
+            onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='var(--shadow-md)'"
+            onmouseout="this.style.transform='';this.style.boxShadow=''">
+            <div
+              style="width:56px;height:56px;border-radius:12px;background:#fef3c7;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px">
+              🕐</div>
+            <h3 style="font-size:18px;font-weight:800;margin-bottom:8px">My Turn</h3>
+            <p style="font-size:13px;color:var(--text-light);margin-bottom:20px">Check your token status and real-time
+              updates.</p>
+            <div
+              style="width:36px;height:36px;border-radius:50%;background:var(--amber-500);display:flex;align-items:center;justify-content:center;color:white;font-size:16px">
+              →</div>
+          </a>
+          <a href="procurement-status.html" class="card card-pad"
+            style="text-decoration:none;background:#eff6ff;border-color:#bfdbfe;transition:all .2s;cursor:pointer"
+            onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='var(--shadow-md)'"
+            onmouseout="this.style.transform='';this.style.boxShadow=''">
+            <div
+              style="width:56px;height:56px;border-radius:12px;background:#dbeafe;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px">
+              📋</div>
+            <h3 style="font-size:18px;font-weight:800;margin-bottom:8px">Procurement Status</h3>
+            <p style="font-size:13px;color:var(--text-light);margin-bottom:20px">View the status of your produce at the
+              center.</p>
+            <div
+              style="width:36px;height:36px;border-radius:50%;background:var(--blue-500);display:flex;align-items:center;justify-content:center;color:white;font-size:16px">
+              →</div>
+          </a>
+        </div>
+
+        <!-- Other Options -->
+        <h2 style="font-size:20px;font-weight:800;margin-bottom:16px"><h2 style="font-size:20px;font-weight:800;margin-bottom:16px">Other Options</h2>
+        <div class="grid-3">
+          <a href="my-profile.html" class="card card-pad"
+            style="text-decoration:none;padding:18px 20px;transition:all .15s;display:flex;align-items:center;gap:16px"
+            onmouseover="this.style.borderColor='var(--green-400)'" onmouseout="this.style.borderColor=''">
+            <div
+              style="width:44px;height:44px;border-radius:50%;background:var(--green-50);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">
+              👤</div>
+            <div style="flex:1">
+              <div style="font-weight:700">My Profile</div>
+              <div style="font-size:12px;color:var(--text-light)">View and update your details.</div>
+            </div>
+            <span style="color:var(--text-muted)">›</span>
+          </a>
+          <a href="help-support.html" class="card card-pad"
+            style="text-decoration:none;padding:18px 20px;transition:all .15s;background:#eff6ff;border-color:#bfdbfe;display:flex;align-items:center;gap:16px"
+            onmouseover="this.style.borderColor='var(--blue-500)'" onmouseout="this.style.borderColor='#bfdbfe'">
+            <div
+              style="width:44px;height:44px;border-radius:50%;background:#dbeafe;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">
+              📖</div>
+            <div style="flex:1">
+              <div style="font-weight:700">Guides &amp; Tips</div>
+              <div style="font-size:12px;color:var(--text-light)">Helpful information for better farming.</div>
+            </div>
+            <span style="color:var(--text-muted)">›</span>
+          </a>
+          <a href="help-support.html" class="card card-pad"
+            style="text-decoration:none;padding:18px 20px;transition:all .15s;background:#faf5ff;border-color:#e9d5ff;display:flex;align-items:center;gap:16px"
+            onmouseover="this.style.borderColor='var(--purple-500)'" onmouseout="this.style.borderColor='#e9d5ff'">
+            <div
+              style="width:44px;height:44px;border-radius:50%;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">
+              🎧</div>
+            <div style="flex:1">
+              <div style="font-weight:700">Contact Support</div>
+              <div style="font-size:12px;color:var(--text-light)">Get help anytime.</div>
+            </div>
+            <span style="color:var(--text-muted)">›</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <span>© 2026 Sankalp. All rights reserved.
+        <div class="brand-right">🌿 For Farmers | For a Stronger Tomorrow</div>
+      </div>
+    </main>
+    <!-- ── Mobile Bottom Navigation Bar ── -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <a href="dashboard.html" class="mobile-nav-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+        <span>Home</span>
+      </a>
+      <a href="book-slot.html" class="mobile-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+          <line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+        <span>Book Slot</span>
+      </a>
+      <a href="my-turn.html" class="mobile-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
+        </svg>
+        <span>My Turn</span>
+      </a>
+      <a href="procurement-status.html" class="mobile-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+        </svg>
+        <span>Status</span>
+      </a>
+      <a href="#menu" class="mobile-nav-item" data-open-drawer>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+        <span>Menu</span>
+      </a>
+    </nav>
+  </div>
+  <script src="../js/app.js"></script>
+<script>
+(function(){
+  var btn=document.getElementById('dmToggle');
+  if(!btn) return;
+  var apply=function(t){
+    document.documentElement.setAttribute('data-theme',t);
+    btn.textContent=t==='dark'?'☀️':'🌙';
+    localStorage.setItem('sankalp_theme',t);
+  };
+  apply(localStorage.getItem('sankalp_theme')||'light');
+  btn.addEventListener('click',function(){
+    apply(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
+  });
+})();
+</script>
+
+<script>
+// Show logged-in user name
+(function(){
+  var fu = JSON.parse(localStorage.getItem('sankalp_farmer_user')||'{}');
+  if(fu.name){
+    document.querySelectorAll('.user-name').forEach(function(el){el.textContent=fu.name});
+  }
+})();
+</script>
+</body>
+
+</html>

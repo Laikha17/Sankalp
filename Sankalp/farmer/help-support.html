@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Help &amp; Support – Sankalp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+<style>
+[data-theme="dark"] body{background:#0f1a13!important;color:#e8f5ee!important}
+[data-theme="dark"] .sidebar{background:#111e15!important;border-color:#2a4a32!important}
+[data-theme="dark"] .nav-item{color:#86a891!important}
+[data-theme="dark"] .nav-item:hover,[data-theme="dark"] .nav-item.active{background:#1a2e1f!important;color:#52a87a!important}
+[data-theme="dark"] .main{background:#0f1a13!important}
+[data-theme="dark"] .topbar{background:#111e15!important;border-color:#2a4a32!important}
+[data-theme="dark"] .card{background:#1a2e1f!important;border-color:#2a4a32!important}
+[data-theme="dark"] table thead tr{background:#0f1a13!important}
+[data-theme="dark"] th,[data-theme="dark"] td{color:#c8e6d4!important;border-color:#2a4a32!important}
+[data-theme="dark"] .stat-card{background:#1a2e1f!important;border-color:#2a4a32!important}
+[data-theme="dark"] .page-footer{background:#111e15!important;color:#6b8a73!important}
+.dm-toggle{width:32px;height:32px;border-radius:50%;background:#e8f5ee;border:1.5px solid #c8e6d4;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .2s;flex-shrink:0}
+[data-theme="dark"] .dm-toggle{background:#1a2e1f;border-color:#2a4a32}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="sidebar-logo"><a href="../index.html" class="logo-mark" style="gap:10px;text-decoration:none;display:flex;align-items:center"><img src="../images/logo.jpg" alt="Sankalp" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #c8e6d4;"><div class="logo-text"><strong>Sankalp</strong><span>From Farm to Fair Markets</span></div></a>
+    <button class="sidebar-close-btn" aria-label="Close menu">✕</button></div>
+  <nav class="sidebar-nav">
+    <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</a>
+    <a href="book-slot.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>Book Slot</a>
+    <a href="my-turn.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>My Turn</a>
+    <a href="procurement-status.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>Procurement Status</a>
+    <div class="nav-divider"></div>
+    <a href="my-profile.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>My Profile</a>
+    <a href="settings.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg>Settings</a>
+    <a href="help-support.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>Help &amp; Support</a>
+    <a href="../index.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Home Portal</a>
+  </nav>
+  <div class="sidebar-footer"><div style="font-size:28px;margin-bottom:8px">🌿</div><div class="sidebar-tagline">Empowering Farmers<br>Enriching India</div></div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div><h1 style="font-size:20px;font-weight:800">Help &amp; Support</h1><p style="font-size:13px;color:var(--text-light)">We're here to help you 24/7</p></div>
+    <div class="topbar-right" style="gap:10px"><button class="dm-toggle" id="dmToggle" title="Toggle Dark Mode">🌙</button>
+      <button class="notif-btn" data-notif-btn><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><div class="notif-dot"></div></button>
+      <div class="user-pill"><div class="user-avatar" style="font-size:18px">👨‍🌾</div><div class="user-name">Mallaiah Goud</div></div>
+    </div>
+  </div>
+  <div class="notif-overlay" id="notifOverlay"><div class="notif-panel"><div class="notif-header"><h3>🔔 Notifications</h3><button class="notif-close">✕</button></div><div class="notif-list"></div></div></div>
+
+  <div class="page-content">
+    <!-- Emergency Banner -->
+    <div style="background:linear-gradient(135deg,var(--green-800),var(--green-600));border-radius:var(--radius-lg);padding:24px 32px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:20px">
+      <div style="color:white">
+        <div style="font-size:20px;font-weight:800;margin-bottom:4px">📞 National Toll-Free Helpline</div>
+        <div style="opacity:.8;font-size:14px">24/7 support in Telugu, Hindi, English, Kannada</div>
+      </div>
+      <a href="tel:1800XXXXXXX" style="background:white;color:var(--green-800);padding:14px 28px;border-radius:var(--radius-sm);font-size:20px;font-weight:800;text-decoration:none;white-space:nowrap">1800-XXX-XXXX</a>
+    </div>
+
+    <div class="grid-2">
+      <!-- Helpline Numbers -->
+      <div>
+        <div class="card card-pad" style="margin-bottom:16px">
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:16px">📞 Emergency &amp; Helpline Numbers</h3>
+
+          <div class="helpline-card">
+            <div class="helpline-icon stat-icon-green" style="font-size:22px">📞</div>
+            <div style="flex:1">
+              <div class="helpline-label">National Toll-Free (24/7)</div>
+              <div class="helpline-num">1800-XXX-XXXX</div>
+            </div>
+            <a href="tel:1800XXXXXXX" class="btn btn-primary btn-sm">Call</a>
+          </div>
+
+          <div class="helpline-card">
+            <div class="helpline-icon stat-icon-blue" style="font-size:22px">🏛️</div>
+            <div style="flex:1">
+              <div class="helpline-label">Nalgonda Mandal Office</div>
+              <div class="helpline-num">08682-123456</div>
+            </div>
+            <a href="tel:08682123456" class="btn btn-primary btn-sm">Call</a>
+          </div>
+
+          <div class="helpline-card">
+            <div class="helpline-icon stat-icon-amber" style="font-size:22px">🏗️</div>
+            <div style="flex:1">
+              <div class="helpline-label">Nalgonda Procurement Center</div>
+              <div class="helpline-num">08682-654321</div>
+            </div>
+            <a href="tel:08682654321" class="btn btn-primary btn-sm">Call</a>
+          </div>
+
+          <div class="helpline-card">
+            <div class="helpline-icon stat-icon-purple" style="font-size:22px">🌾</div>
+            <div style="flex:1">
+              <div class="helpline-label">Agriculture Department</div>
+              <div class="helpline-num">1800-425-XXXX</div>
+            </div>
+            <a href="tel:1800425XXXX" class="btn btn-primary btn-sm">Call</a>
+          </div>
+        </div>
+
+        <!-- Nearby Centers -->
+        <div class="card card-pad">
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:16px">🏛️ Nearest Procurement Centers</h3>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="padding:14px;border:1.5px solid var(--green-200);border-radius:var(--radius-sm);background:var(--green-25)">
+              <div style="font-weight:700;font-size:14px">Nalgonda Grain Procurement Center</div>
+              <div style="font-size:12px;color:var(--text-light);margin-top:4px">📍 Main Road, Nalgonda &nbsp;|&nbsp; ⏰ 7 AM – 5 PM</div>
+              <div style="font-size:12px;font-weight:600;color:var(--green-800);margin-top:4px">📞 08682-654321</div>
+            </div>
+            <div style="padding:14px;border:1px solid var(--border);border-radius:var(--radius-sm)">
+              <div style="font-weight:700;font-size:14px">Miryalaguda Center</div>
+              <div style="font-size:12px;color:var(--text-light);margin-top:4px">📍 Station Road, Miryalaguda &nbsp;|&nbsp; ⏰ 8 AM – 4 PM</div>
+              <div style="font-size:12px;font-weight:600;color:var(--green-800);margin-top:4px">📞 08682-987654</div>
+            </div>
+            <div style="padding:14px;border:1px solid var(--border);border-radius:var(--radius-sm)">
+              <div style="font-weight:700;font-size:14px">Bhongir Center</div>
+              <div style="font-size:12px;color:var(--text-light);margin-top:4px">📍 Market Yard, Bhongir &nbsp;|&nbsp; ⏰ 7 AM – 5 PM</div>
+              <div style="font-size:12px;font-weight:600;color:var(--green-800);margin-top:4px">📞 08682-112233</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div>
+        <div class="card card-pad" style="margin-bottom:16px">
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:16px">❓ Frequently Asked Questions</h3>
+          <div id="faqList">
+            <div class="faq-item open">
+              <div class="faq-q">How do I book a procurement slot? <span class="faq-chevron">▾</span></div>
+              <div class="faq-a">You can book a slot online through this portal by clicking "Book Slot" in the menu. Alternatively, call our toll-free number 1800-XXX-XXXX and follow the automated steps.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">Can I book a slot via phone call? <span class="faq-chevron">▾</span></div>
+              <div class="faq-a">Yes! Call 1800-XXX-XXXX, select your language, and the automated system will guide you to select date, time, and confirm your slot. You'll receive an SMS confirmation.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">How many days in advance can I book? <span class="faq-chevron">▾</span></div>
+              <div class="faq-a">You can book a slot up to 7 days in advance. Slots open 3 days before the date, so ensure you book well ahead.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">What documents do I need at the center? <span class="faq-chevron">▾</span></div>
+              <div class="faq-a">Please bring your original Aadhaar card, land ownership documents (Pattadar Passbook), and produce. Your biometric verification will be done on-site.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">When will I receive payment? <span class="faq-chevron">▾</span></div>
+              <div class="faq-a">Payment is typically processed within 3-5 working days after quality verification at the center. You'll receive an SMS notification when it's done.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">Can I cancel or reschedule my slot? <span class="faq-chevron">▾</span></div>
+              <div class="faq-a">Yes, you can cancel or reschedule up to 2 hours before your booked slot. Use the "Book Slot" page or call the toll-free number for assistance.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Options -->
+        <div class="card card-pad">
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:16px">💬 Contact Support</h3>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <a href="tel:1800XXXXXXX" class="btn btn-primary btn-full">📞 Call Toll-Free 1800-XXX-XXXX</a>
+            <button class="btn btn-outline btn-full" onclick="alert('Chat feature coming soon!')">💬 Live Chat (Coming Soon)</button>
+            <button class="btn btn-ghost btn-full" onclick="alert('Email: support@sankalp.gov.in')">📧 Email Support</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer"><span>© 2026 Sankalp. All rights reserved.</span><div class="brand-right">🌿 For Farmers | For a Stronger Tomorrow</div></div>
+</main>
+
+    <!-- ── Mobile Bottom Navigation Bar ── -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <a href="dashboard.html" class="mobile-nav-item ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
+        <span>Home</span>
+      </a>
+      <a href="book-slot.html" class="mobile-nav-item ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
+        <span>Book Slot</span>
+      </a>
+      <a href="my-turn.html" class="mobile-nav-item ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+        <span>My Turn</span>
+      </a>
+      <a href="procurement-status.html" class="mobile-nav-item ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg>
+        <span>Status</span>
+      </a>
+      <a href="#menu" class="mobile-nav-item" data-open-drawer>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
+        <span>Menu</span>
+      </a>
+    </nav>
+</div>
+<script src="../js/app.js"></script>
+<script>
+(function(){
+  var btn=document.getElementById('dmToggle');
+  if(!btn) return;
+  var apply=function(t){
+    document.documentElement.setAttribute('data-theme',t);
+    btn.textContent=t==='dark'?'☀️':'🌙';
+    localStorage.setItem('sankalp_theme',t);
+  };
+  apply(localStorage.getItem('sankalp_theme')||'light');
+  btn.addEventListener('click',function(){
+    apply(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
+  });
+})();
+</script>
+
+<script>
+// Show logged-in user name
+(function(){
+  var fu = JSON.parse(localStorage.getItem('sankalp_farmer_user')||'{}');
+  if(fu.name){
+    document.querySelectorAll('.user-name').forEach(function(el){el.textContent=fu.name});
+  }
+})();
+</script>
+</body>
+</html>
